@@ -8,7 +8,7 @@ export default function routes(){
 		<div>
 			<div style={{backgroundColor: '#397FCF', width: '3em', height: '100%', position: 'absolute', left: 0, top: 0}}>
 				<div style={{width: '100%', height: '3em'}}>
-					
+
 				</div>
 				<div style={{width: '100%', height: '3em'}}>
 
