@@ -3,4 +3,10 @@
   background-color: rgb(49, 49, 49);
   width: 100vmax;
   height: 100vmax;
+  overflow-y: hidden;
+}
+
+body
+{
+  overflow: hidden;
 }
