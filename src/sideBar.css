@@ -1,0 +1,17 @@
+.SideBar
+{
+    background-color: #84BEFF;
+    width: 100vmax;
+    height: 2.5em;
+    position: absolute;
+    top: 0em;
+    text-align: left;
+}
+
+.Icon
+{
+    padding: 0.25em 0.25em 0.25em 0.25em;
+    height: 2em;
+    display: inline-block;
+    vertical-align: center;
+}
