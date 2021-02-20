@@ -4,9 +4,10 @@ import Ship from './Views/Ship'
 import Boat from './Views/Boat'
 import Profile from './Views/Profile'
 
+
 export default function routes(){
 	return(
-		<div style={{width: 'calc(100% - 3em)', position: 'absolute', left: '3em', top: 0,  height: '100%'}}>
+		<div class="Content">
 		<BrowserRouter>
 			<main>
 				<div>
