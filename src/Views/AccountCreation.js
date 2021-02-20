@@ -12,6 +12,6 @@ export default class AccountCreation extends Component{
 		)
 	}
 
-  export default class;
+
 
 }

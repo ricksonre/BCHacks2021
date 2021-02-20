@@ -16,5 +16,5 @@ export default class UserMessage extends Component
             </p>
         )
     }
-  export default UserMessage;
+
 }

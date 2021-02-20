@@ -3,6 +3,7 @@ import Home from './Views/Home'
 import Ship from './Views/Ship'
 import Boat from './Views/Boat'
 import Profile from './Views/Profile'
+import AccountCreation from './Views/AccountCreation'
 
 export default function routes(){
 	return(
