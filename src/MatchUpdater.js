@@ -11,8 +11,8 @@ export default function(firstUser, secondUser, firebase)
 			t.set(potentialMatchesSecond, {MatchCount: matchNum})
 			t.set(potentialMatches, {MatchCount: matchNum})
 			if (matchNum > 3) {
-				t.set(firstUser.collection('Matches').doc(secondUser), {uid: secondUser})
-				t.set(secondUser.collection('Matches').doc(firstUser), {uid: firstUser})
+				t.set(db.collection('users').doc(firstUser).collection('Matches').doc(secondUser), {uid: secondUser})
+				t.set(db.collection('users').doc(secondUser).collection('Matches').doc(firstUser), {uid: firstUser})
 			}
 		})
 	})
