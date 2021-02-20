@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import './Views/SideBar.css'
+import './Styles/SideBar.css'
 
 export default function sidebar()
 {
