@@ -7,7 +7,7 @@ import AccountCreation from './Views/AccountCreation'
 
 export default function routes(){
 	return(
-		<div style={{width: 'calc(100% - 3em)', position: 'absolute', left: '3em', top: 0,  height: '100%'}}>
+		<div>
 		<BrowserRouter>
 			<main>
 				<div>
