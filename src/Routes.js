@@ -9,7 +9,9 @@ export default function routes(){
 			<main>
 				<div>
 					<Switch>
-						<Route path={'/'} component={Home}/>
+						<Route path={'/ship'} component={Home}/>
+						<Route path={'/your boat'} component={Home}/>
+						<Route path={'/profile'} component={Home}/>
 					</Switch>
 				</div>
 			</main>
