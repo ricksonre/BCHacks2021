@@ -10,8 +10,35 @@
 
 .Icon
 {
-    padding: 0.25em 0.25em 0.25em 0.25em;
+    padding: 0em 0em 0em 0em;
+    margin: 0.25em 1em 0.25em 0.25em;
     height: 2em;
     display: inline-block;
-    vertical-align: center;
+    vertical-align: middle;
 }
+
+.SideBarButton
+{
+    padding: 0em 0em 0em 0em;
+    margin: 0.25em 0.25em 0.25em 0.25em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.SideBarButton a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.SideBarButton a:hover
+{
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+}
+/*
+.SideBarButton .Profile
+{
+    text-align: right;
+    width: 100vh;
+}*/

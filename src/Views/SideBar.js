@@ -5,9 +5,17 @@ export default function sidebar()
 {
 	return(
 		<div class="SideBar">
-			<img src="icon.png" class="Icon"></img>
-			<div>
-				
+			<a href="/">
+				<img src="icon.png" class="Icon"></img>
+			</a>
+			<div class="SideBarButton" >
+				<a href="/ship">Ship</a>
+			</div>
+			<div class="SideBarButton" >
+				<a href="/yourboat">Your Boat</a>
+			</div>
+			<div class="SideBarButton" >
+				<a href="/profile">Profile</a>
 			</div>
 		</div>
 	)
