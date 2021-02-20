@@ -11,6 +11,7 @@ export default function routes(){
 			<main>
 				<div>
 					<Switch>
+						<Route path={'/'} component={Home}/>
 						<Route path={'/ship'} component={Ship}/>
 						<Route path={'/yourboat'} component={Boat}/>
 						<Route path={'/profile'} component={Profile}/>

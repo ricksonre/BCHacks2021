@@ -9,7 +9,7 @@ export default class Home extends Component{
 	render(){
 		return(
 			<p>
-				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				Home
 			</p>
 		)
 	}
