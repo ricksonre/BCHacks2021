@@ -18,7 +18,7 @@ export default class Boat extends Component {
 
     componentDidMount() {
         let messageTemp = this.state.messages;
-        const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
+        const ref = this.props.firebase.firestore().collection('users').doc(this.props.uid).collection('Messages')
         ref.onSnapshot(colSnap => {
             colSnap.docs.forEach(data => {
                 console.log("DOC DATA WOOOO", data.data())
@@ -36,7 +36,7 @@ export default class Boat extends Component {
             $("#SendMessage").val("");
         });
 
-        getMatches("00000Example", this.props.firebase).then(matches => {
+        getMatches(this.props.uid, this.props.firebase).then(matches => {
             $("#UsersList").innerHTML = "";
             $.each(matches, (key, val) => {
                 let user = GetUserData(val.userID, this.props.firebase);

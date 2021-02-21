@@ -24,7 +24,7 @@ export default class Ship extends Component
     async getNewMatch (firebase){
         let userIDs = await GetUserIds(firebase);
         const uid = userIDs[Math.floor(Math.random() * userIDs.length)] ;
-        let secondUserIDs = await GetPotentialMatches(uid);
+        let secondUserIDs = await GetPotentialMatches(uid, false, firebase);
         let secondId = secondUserIDs[Math.floor(Math.random() * secondUserIDs.length)];
         this.setState({userOne: uid, userTwo: secondId});
 
