@@ -28,7 +28,8 @@ export default class Ship extends Component
         const uid = userIDs[Math.floor(Math.random() * userIDs.length)] ;
         let secondUserIDs = await GetPotentialMatches(uid, false, firebase);
         const index = secondUserIDs.indexOf(uid)
-        if(index > 0){
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH", index)
+        if(index !== -1){
             secondUserIDs.splice(index, 1)
         }
         let secondId = secondUserIDs[Math.floor(Math.random() * secondUserIDs.length)];
@@ -61,6 +62,7 @@ export default class Ship extends Component
         this.setState({hasShipped: true})
         console.log(this.state.userOne, this.state.userTwo)
         MatchUpdater(this.state.userOne, this.state.userTwo, this.props.firebase).then(data => {
+            this.getNewMatch()
             console.log(data)
         })
     }
