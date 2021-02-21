@@ -97,6 +97,7 @@ export default class AccountCreation extends Component{
             UpdateUserProfile(this.props.firebase, data, this.props.uid);
             HandleImage(this.state.picture, this.props.uid, this.props.firebase)
             document.location.href = "/home";
+            localStorage.setItem("hasAProfile", true);
 
           }else{
               $('#submitBtn').text("Please Fill All The Fields");
@@ -104,11 +105,11 @@ export default class AccountCreation extends Component{
 
           }
 
-        localStorage.setItem("hasAProfile", true);
 
 
 
-        window.location.href = "";
+
+
     }
 
 
