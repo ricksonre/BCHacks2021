@@ -13,12 +13,21 @@ export default class Boat extends Component
         super(props);
         this.state= {
             selectedUser: null,
-            userList: []
+            userList: [],
+            messages:false
         }
     }
 
     componentDidMount()
     {
+        const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
+        ref.onSnapshot(colSnap => {
+            colSnap.docs.forEach(data => {
+                this.setState({messages: data.data()})
+            })
+
+        })
+
         let context = this;
         $("#SendButton").on("click", () =>
         {

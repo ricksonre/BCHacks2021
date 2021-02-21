@@ -40,26 +40,10 @@ export default class app extends Component
             uid: localStorage.getItem('uid') ? localStorage.getItem('uid') : undefined,
             firebaseListeners: null
         }
-        if(localStorage.getItem('uid'))
-        {
-            const ref = this.state.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
-            ref.onSnapshot(colSnap => {
-                colSnap.docs.forEach(data => {
-                    this.setState({firebaseListeners: data.data()})
-                })
-
-            })
-        }
     }
     updateUserId = async (userid) => {
         console.log("HERE WITH UID OF", userid)
-        const ref = this.state.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
-        ref.onSnapshot(colSnap => {
-            colSnap.docs.forEach(data => {
-                this.setState({firebaseListeners: data.data()})
-            })
-
-        })
+       
         this.setState({uid: userid.toString()})
         localStorage.setItem('uid', userid)
     }
@@ -92,6 +76,7 @@ export default class app extends Component
 
     render(){
         const uid = this.state.uid;
+        console.log("RENDER!!!", this.state.firebaseListeners)
         return uid ?
            (
                 <div className="App">
