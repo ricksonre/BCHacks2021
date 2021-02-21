@@ -6,7 +6,6 @@ import $ from 'jquery'
 
 export default class Boat extends Component
 {
-
     constructor(props)
     {
         super(props);
@@ -15,87 +14,61 @@ export default class Boat extends Component
         }
     }
 
+    componentDidMount()
+    {
+        let context =  this;
+        $("#SendButton").on("click", ()=>
+        {
+            let message = $(".ChatMessageInputContainer").find("input").html();
+            if(message.length > 0)
+            {
+                context.sendMessage();
+            }
+        });
+    }
+
     messageUser = (message) => {
-        sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, this.state.message);
+        sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, message);
+    }
+
+    show_chat(user)
+    {
+        
+    }
+
+    add_user(user)
+    {
+        let userList = $("<div/>")
+                        .attr("class", "UserContainer")
+                        .on("click", ()=>
+                        {
+                            Boat.show_chat(user);
+                        });
+
+        $("<img />")
+            .attr("class", "img-thumbnail")
+            .attr("src", user.img)
+            .appendTo(userList);
+
+        $("<h3/>")
+            .html(user.name)
+            .appendTo(userList);
+        
+        $("<hr/>")
+            .appendTo(userList
+                );
+
+        userList.appendTo("#UserList");
+
+
     }
 
     render()
     {
         return (
             <div class="Boat">
-                <div class="UsersList">
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
+                <div id="UsersList">
+                    
                 </div>
                 <div class="ChatContainer">
                     <div class="MessagesContainer">
@@ -112,7 +85,7 @@ export default class Boat extends Component
                     </div>
                     <div class="ChatMessageInputContainer">
                         <input type="text" placeholder="Message"></input>
-                        <button>Send</button>
+                        <button id="SendButton" >Send</button>
                     </div>
                 </div>
                 <div class="UserInformation">
