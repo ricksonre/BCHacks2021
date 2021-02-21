@@ -2,6 +2,7 @@ import {Component} from 'react';
 import $ from 'jquery';
 import animate from 'jquery';
 import '../Styles/AccountCreation.css';
+import ImageUploader from 'react-images-upload'
 
 export default class AccountCreation extends Component{
 
@@ -10,7 +11,8 @@ export default class AccountCreation extends Component{
       super(props);
       this.state= {
         md: false,
-        mx: "0px"
+        mx: "0px",
+        nmx: "0px"
       }
   }
 
@@ -19,7 +21,8 @@ export default class AccountCreation extends Component{
 
     $(document).mousemove(function(event) {
         context.setState({
-          mx: ""+(event.pageX-75)+"px"
+          mx: ""+(event.pageX-75)+"px",
+          nmx: "-"+(event.pageX*2)+"px"
         });
     });
 
@@ -44,65 +47,115 @@ export default class AccountCreation extends Component{
         console.log("hi there again");
 
     });
-    $(document).on("mousemove", ()=>
+    $(document).on("mousemove", (event)=>
     {
 
         if(context.state.md){
           $("#ship").css({"left": this.state.mx});
+          console.log("to tyra");
+          $(".oouter").css({"left": (this.state.nmx)});
+        }
+        if(event.pageX>$(window).width()*0.95){
+          window.location.href = "/home";
         }
 
     });
 
+  }
+  readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
   }
 
 
 	render(){
 		return(
       <div class = "tyra">
-
+      <div class = "oouter">
       <div class= "outer-container">
         <div class= "prompt">
-          <p>Name</p>
-          <input type="text"/>
+          <div class= "inner-container">
+            <p>Profile Picture</p>
+            <ImageUploader withPreview="true"/>
+          </div>
         </div>
       </div>
 
       <div class= "outer-container">
         <div class= "prompt">
-          <p>Birthday</p>
-          <input type="date"/>
+          <div class= "inner-container">
+            <p>Name</p>
+            <input type="text"/>
+          </div>
         </div>
       </div>
 
       <div class= "outer-container">
         <div class= "prompt">
-          <p>Occupation</p>
-          <input type="text"/>
+          <div class= "inner-container">
+            <p>Birthday</p>
+            <input type="date"/>
+          </div>
         </div>
       </div>
 
       <div class= "outer-container">
         <div class= "prompt">
-          <p>Hobby</p>
-          <input type="text"/>
+          <div class= "inner-container">
+            <p>Occupation</p>
+            <input type="text"/>
+          </div>
         </div>
       </div>
 
-      <div class= "prompt">
-        <p>Location</p>
-        <input type="text"/>
+      <div class= "outer-container">
+        <div class= "prompt">
+          <div class= "inner-container">
+            <p>Hobby</p>
+            <input type="text"/>
+          </div>
+        </div>
       </div>
 
-      <div class= "prompt">
-        <p>Favorite Food</p>
-        <input type="text"/>
+      <div class= "outer-container">
+        <div class= "prompt">
+          <div class= "inner-container">
+            <p>Location</p>
+            <input type="text"/>
+          </div>
+        </div>
       </div>
 
-      <div class= "prompt">
-        <p>Favorite Movie</p>
-        <input type="text"/>
+      <div class= "outer-container">
+        <div class= "prompt">
+          <div class= "inner-container">
+            <p>Favorite Food</p>
+            <input type="text"/>
+          </div>
+        </div>
       </div>
 
+      <div class= "outer-container">
+        <div class= "prompt">
+          <div class= "inner-container">
+            <p>Favorite Movie</p>
+            <input type="text"/>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
