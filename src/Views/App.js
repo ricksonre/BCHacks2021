@@ -37,6 +37,7 @@ export default class app extends Component
         this.state={
             firebase: firebase,
             uid: localStorage.getItem('uid') ? localStorage.getItem('uid') : undefined,
+            hasAProfile: localStorage.getItem('hasAProfile'),
             firebaseListeners: null
         }
     }
@@ -129,7 +130,8 @@ export default class app extends Component
 
     CreateProfileView()
     {
-        this.state.hasAProfile = false;
+        localStorage.setItem("hasAProfile", false)
+        this.setState({hasAProfile: false});
         return <div className="App">
             <AccountCreation hasAProfile = { this.state.hasAProfile }/>
         </div>
