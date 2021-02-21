@@ -28,18 +28,19 @@ export default class Boat extends Component
             }
         });
 
-        getMatches(this.props.uid, this.props.firebase).then(matches => {
+        getMatches("00000Example", this.props.firebase).then(matches => {
             console.log("MATCHES", matches)
-            for (const uid in matches)
+            $.each(matches, (key,val)=>
             {
-                console.log(uid)
-                let user = GetUserData(uid, this.props.firebase);
+                let user = GetUserData(val.userID, this.props.firebase);
                 user.then((value)=>
                 {
-                    console.log(value);
-                    ///context.add_user(value);
+                    if(null != value)
+                    {
+                        context.add_user(value);
+                    }
                 })
-            }
+            })
         })
 
     }
@@ -67,29 +68,22 @@ export default class Boat extends Component
 
     add_user(user)
     {
-        let userList = $("<div/>")
-                        .attr("class", "UserContainer")
-                        .on("click", ()=>
-                        {
-                            Boat.show_chat(user);
-                        });
+        $("#UsersList").append(
+            `
+                <div class="UserContainer">
+                    <img class="img-thumbnail"/>
+                    <h3>
+                        ${user["name"] != null ? user["name"]: "Name Missing"}
+                    </h3>
+                    <hr/>
+                </div>
+            `);
 
-        $("<img />")
-            .attr("class", "img-thumbnail")
-            .attr("src", user.img)
-            .appendTo(userList);
-
-        $("<h3/>")
-            .html(user.name)
-            .appendTo(userList);
-        
-        $("<hr/>")
-            .appendTo(userList
-                );
-
-        userList.appendTo("#UserList");
-
-
+        $(".UserContainer")
+            .on("click", () =>
+            {
+                Boat.showChat(user);
+            });
     }
 
     render()
