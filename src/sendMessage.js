@@ -16,8 +16,6 @@ export default function(userOne,userTwo,firebase, message){
 			t.set(userTwoRef, newMessage);
 			t.set(userOneRef, newMessage);
 		})
-
-
 	})
 
 }
