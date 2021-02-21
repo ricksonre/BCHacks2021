@@ -3,11 +3,35 @@
   color:red;
   width: 150px;
   height: 150px;
+  top: 50%
 }
+.oouter{
 
+  position: absolute;
+  width: 1000vw;
+}
 .outer-container{
 
-  display: inline-block
+  display: inline-block;
+  overflow:  visible;
+  border-radius: 25px;
+  margin: 5vh;
+  padding: 5vh;
+  width: 60vh;
+  height: 50vh;
+  background-color: white;
+  white-space: nowrap;
+}
+
+.prompt{
+
+  margin: auto;
+  text-align: center;
+}
+
+.inner-container{
+
+  display: inline-block;
 
 }
 
@@ -16,7 +40,12 @@ body {
 }
 
 .tyra{
-
+  position: absolute;
+  left:0px;
+  width: 100%;
+  height:100%;
+  display: inline-block;
   background-color: lightblue;
+
 
 }
