@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import UpdateUserProfile from "../UpdateUserProfile";
 import HandleImage from '../HandleImage'
 import mimeDb from "mime-db";
+import {Link} from 'react-router-dom'
 
 export default class AccountCreation extends Component{
 
@@ -186,11 +187,13 @@ export default class AccountCreation extends Component{
       </div>
           {this.state.showSubmit &&
           (
+              <Link to={'/profile'}>
               <Button style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
               color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
                   Submit
                   <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
-              </Button>)}
+              </Button>
+              </Link>)}
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
