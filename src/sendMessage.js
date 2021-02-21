@@ -7,7 +7,7 @@ export default function(userOne,userTwo,firebase, message){
 
 		const userOneData = t.get(userOneRef);
 
-		userOneData.then(async (userOneData) => {
+		userOneData.get().then(async (userOneData) => {
 			const newMessage = {
 				...userOneData.data(),
 				messages: [ ...userOneData.data()['messages'], {user: userOne, message: message}]
