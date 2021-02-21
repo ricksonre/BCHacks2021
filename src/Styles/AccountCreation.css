@@ -5,11 +5,17 @@
   height: 150px;
 }
 
+.outer-container{
+
+  display: inline-block
+
+}
+
 body {
   background-color: lightblue;
 }
 
-.App{
+.tyra{
 
   background-color: lightblue;
 
