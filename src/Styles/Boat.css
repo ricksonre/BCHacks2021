@@ -35,17 +35,24 @@
 .ChatMessageInputContainer
 {
     text-align: center;
+    vertical-align: top;
 }
 
 .ChatMessageInputContainer input
 {
     width: 60%;
     display: inline-block;
+    height: 3em;
+    vertical-align: top;
 }
 
 .ChatMessageInputContainer button
 {
     display: inline-block;
+    height: 3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: top;
 }
 
 .UserContainer
@@ -107,4 +114,22 @@
 .User
 {
     text-align: right;
+}
+
+.UserInformation
+{
+    text-align: center;
+    padding: 2em 1em 1em 1em;
+    color: black;
+}
+
+.UserInformation h2
+{
+    margin-top: 0.5em;
+}
+
+.UserInformation img
+{
+    width: 7.5vw;
+    height: 7.5vw;
 }
