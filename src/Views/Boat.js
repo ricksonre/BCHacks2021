@@ -54,9 +54,9 @@ export default class Boat extends Component
 
     componentDidUpdate()
     {
-        console.log(this.props)
-        let message = this.props.firebaseListener;
-        console.log(`message: ${message}`);
+        let messages = this.props.firebaseListener;
+        console.log(`message: ${messages}`);
+        console.log(messages);
     }
 
     messageUser = (message) => {
