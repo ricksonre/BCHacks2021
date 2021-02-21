@@ -19,7 +19,7 @@ export default class AccountCreation extends Component{
         md: false,
         mx: "0px",
         nmx: "0px",
-          showSubmit: false,
+          showSubmit: true,
       }
   }
 
@@ -50,11 +50,6 @@ export default class AccountCreation extends Component{
           console.log("to tyra");
           $(".oouter").css({ "left": (this.state.nmx) });
       }
-
-        if(event.pageX>$(window).width()*0.8)
-        {
-          this.setState({showSubmit: true});
-        }
     });
 
   }
