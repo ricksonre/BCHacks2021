@@ -33,7 +33,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: `calc(-${event.pageX*0.20}vw + 15vw)`
+          nmx: `calc(-${-7+event.pageX*0.16}vw + 15vw)`
         });
     });
 
@@ -75,7 +75,7 @@ export default class AccountCreation extends Component{
     setupProfile()
     {
 
-          if($('#name').val()!="" && $('#bday').val()!="" && $('#occ').val()!="" && $('#hobby').val()!="" &&  $('#location').val()!= "" && $('#food').val()!="" && $('#movie').val()!=""){
+          if($('#name').val()!="" && $('#bday').val()!="" && $('#occ').val()!="" && $('#hobby').val()!="" &&  $('#location').val()!= "" && $('#food').val()!="" && $('#movie').val()!="" && this.state.picture){
             console.log($('#bday').val())
             let data = {
                 name: $('#name').val(),
