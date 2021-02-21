@@ -20,12 +20,13 @@ export default class Boat extends Component
 
     componentDidMount()
     {
+        let messageTemp = this.state.messages;
         const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
         ref.onSnapshot(colSnap => {
             colSnap.docs.forEach(data => {
-                this.setState({messages: data.data()})
+                messageTemp.data.data().otherUser = data.data().messages;
             })
-
+            this.setState({messages: messageTemp})
         })
 
         let context = this;
@@ -66,6 +67,8 @@ export default class Boat extends Component
         $(".MessagesContainer").empty();
         let messages = this.state.messages;
         let context = this;
+        if(messages){
+
         $.each(messages.messages, (key, val) =>
         {
             let other = true;
