@@ -1,6 +1,7 @@
 import '../Styles/App.css';
 import Routes from '../Routes'
 import SideBar from './SideBar'
+import AccountCreation from './AccountCreation'
 import {Component} from 'react'
 import $ from 'jquery';
 import googleImage from '../gsignn.png'
@@ -33,12 +34,17 @@ export default class app extends Component
             firebase.app()
         }
 
-
-
         this.state={
             firebase: firebase,
             uid: localStorage.getItem('uid') ? localStorage.getItem('uid') : undefined,
+            hasAProfile: localStorage.getItem('hasAProfile'),
             firebaseListeners: null
+        }
+
+        if(undefined == this.state.hasAProfile)
+        {
+            localStorage.setItem("hasAProfile", false)
+            this.setState({ hasAProfile: false });
         }
     }
     updateUserId = async (userid) => {
@@ -74,32 +80,68 @@ export default class app extends Component
                 });
     }
 
-    render(){
+    render()
+    {
         const uid = this.state.uid;
         console.log("RENDER!!!", this.state.firebaseListeners)
-        return uid ?
-           (
-                <div className="App">
-                    <BrowserRouter>
-                        <SideBar firebase={this.state.firebase} uid={this.state.uid} />
-                        <Routes
-                            firebase={this.state.firebase} uid={this.state.uid}
-                                firebaseListener={this.state.firebaseListeners}
-                        />
-                    </BrowserRouter>
-                </div>
-           ) : (
-                        <div className="App">
-                            <button style={{margin: '0 0 0 0 ', padding: '0 0 0 0', border: "0", background: 'none', width: "35vh", height: "8vh",
-                                position: "fixed", left: "20.75%", top: "35%"}}
-                                    onClick={ ()=>{ this.gSignIn(); } }
-                                    onMouseDown={ ()=> { this.click_button(true); }}
-                                    onMouseUp={ ()=> { this.click_button(false); }}>
-                                <img id="signin" src={googleImage} style={{width:"100%", height:"100%"}}></img>
-                            </button>
-                        </div>
-                    )
+        console.log("HasAProfile: ", this.state.hasAProfile)
+        console.log(this.state);
+        if(uid)
+        {
+            if ("true" === this.state.hasAProfile)
+            {
+                console.log(1);
+                return this.normalView();
+            }
+            else
+            {
+                return this.CreateProfileView();
+            }
+        }
+        else
+        {
+            return this.loginView();
+        }
 
+    }
+
+    normalView()
+    {
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <SideBar firebase={this.state.firebase} uid={this.state.uid} />
+                    <Routes
+                        firebase={this.state.firebase} uid={this.state.uid}
+                        firebaseListener={this.state.firebaseListeners}
+                    />
+                </BrowserRouter>
+            </div>
+        )
+    }
+
+    loginView()
+    {
+        return (
+            <div className="App">
+                <button style={{
+                    margin: '0 0 0 0 ', padding: '0 0 0 0', border: "0", background: 'none', width: "35vh", height: "8vh",
+                    position: "fixed", left: "20.75%", top: "35%"
+                }}
+                    onClick={() => { this.gSignIn(); }}
+                    onMouseDown={() => { this.click_button(true); }}
+                    onMouseUp={() => { this.click_button(false); }}>
+                    <img id="signin" src={googleImage} style={{ width: "100%", height: "100%" }}></img>
+                </button>
+            </div>
+        )
+    }
+
+    CreateProfileView()
+    {
+        return <div className="App">
+            <AccountCreation hasAProfile={this.state.hasAProfile} firebase={this.state.firebase} uid={this.state.uid}/>
+        </div>
     }
 
 }

@@ -8,7 +8,11 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import UpdateUserProfile from "../UpdateUserProfile";
 import HandleImage from '../HandleImage'
 import mimeDb from "mime-db";
+
 import Popover from '@material-ui/core/Popover';
+
+import {Link} from 'react-router-dom'
+
 
 export default class AccountCreation extends Component{
 
@@ -29,7 +33,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: `calc(-${event.pageX*0.17}vw + 15vw)`
+          nmx: `calc(-${event.pageX*0.20}vw + 15vw)`
         });
     });
 
@@ -42,30 +46,19 @@ export default class AccountCreation extends Component{
 
     });
 
-    //$("#ship").on("mouseup", ()=>
-    //{
-    //    context.setState({
-    //      md: false
-    //    });
-    //});
-
-    $("#ship").on("mouseover", (event)=>
-    {
-
-
-    });
     $("#ship").on("mousemove", (event)=>
     {
-      if(true){
-        $("#ship").css({"left": this.state.mx});
-        console.log("to tyra");
-        $(".oouter").css({"left": (this.state.nmx)});
-
-        if(event.pageX>$(window).width()*0.8){
-          this.setState({showSubmit: true})
-        }
+      if (event.pageX < $(window).width() * 0.9 && event.pageX > $(window).width() * 0.05)
+      {
+          $("#ship").css({ "left": this.state.mx });
+          console.log("to tyra");
+          $(".oouter").css({ "left": (this.state.nmx) });
       }
 
+        if(event.pageX>$(window).width()*0.8)
+        {
+          this.setState({showSubmit: true});
+        }
     });
 
   }
@@ -84,7 +77,8 @@ export default class AccountCreation extends Component{
                 }
       }
 
-    setupProfile(){
+    setupProfile()
+    {
 
           if($('#name').val()!="" && $('#bday').val()!="" && $('#occ').val()!="" && $('#hobby').val()!="" &&  $('#location').val()!= "" && $('#food').val()!="" && $('#movie').val()!=""){
             console.log($('#bday').val())
@@ -110,7 +104,11 @@ export default class AccountCreation extends Component{
 
           }
 
+        localStorage.setItem("hasAProfile", true);
 
+
+
+        window.location.href = "";
     }
 
 
