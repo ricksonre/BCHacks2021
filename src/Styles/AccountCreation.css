@@ -11,7 +11,7 @@
   width: 1000vw;
 }
 .outer-container{
-
+  top: '50%';
   display: inline-block;
   overflow:  visible;
   border-radius: 25px;
@@ -21,11 +21,13 @@
   height: 50vh;
   background-color: white;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .prompt{
-
-  margin: auto;
+  position: 'absolute';
+  margin-top: '50px';
+  vertical-align: middle;
   text-align: center;
 }
 

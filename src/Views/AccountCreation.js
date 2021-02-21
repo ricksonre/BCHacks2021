@@ -54,10 +54,12 @@ export default class AccountCreation extends Component{
           $("#ship").css({"left": this.state.mx});
           console.log("to tyra");
           $(".oouter").css({"left": (this.state.nmx)});
+
+          if(event.pageX>$(window).width()*0.95){
+            window.location.href = "/home";
+          }
         }
-        if(event.pageX>$(window).width()*0.95){
-          window.location.href = "/home";
-        }
+
 
     });
 
@@ -95,7 +97,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Name</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -113,7 +115,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Occupation</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -122,7 +124,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Hobby</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -131,7 +133,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Location</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -140,7 +142,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Favorite Food</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -149,7 +151,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Favorite Movie</p>
-            <input type="text"/>
+            <input type="text" maxlength="20"/>
           </div>
         </div>
       </div>
