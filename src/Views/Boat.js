@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import '../Styles/Boat.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from "jquery";
+import sendMessage from './../sendMessage'
+import $ from 'jquery'
 
 export default class Boat extends Component
 {
@@ -9,6 +10,13 @@ export default class Boat extends Component
     constructor(props)
     {
         super(props);
+        this.state= {
+            selectedUser: null,
+        }
+    }
+
+    messageUser = (message) => {
+        sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, this.state.message);
     }
 
     show_chat(user)
