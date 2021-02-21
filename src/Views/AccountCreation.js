@@ -22,7 +22,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: "-"+(event.pageX*2)+"px"
+          nmx: "-"+(event.pageX*2)/20+"vw"
         });
     });
 
