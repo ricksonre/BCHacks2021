@@ -18,14 +18,15 @@ export default class Boat extends Component
 
     componentDidMount()
     {
-        let context =  this;
-        $("#SendButton").on("click", ()=>
+        let context = this;
+        $("#SendButton").on("click", () =>
         {
-            let message = $(".ChatMessageInputContainer").find("input").html();
-            if(message.length > 0)
+            let message = $("#SendMessage").val();
+            if (message.length > 0)
             {
-                context.sendMessage();
+                context.messageUser(message);
             }
+            $("#SendMessage").val("");
         });
 
         getMatches("00000Example", this.props.firebase).then(matches => {
@@ -48,10 +49,16 @@ export default class Boat extends Component
                 })
             })
         })
+    }
 
+    componentDidUpdate()
+    {
+        let message = this.props.firebaseListeners
+        console.log(message);
     }
 
     messageUser = (message) => {
+        console.log(`Sending ${message} to: ${this.state.selectedUser}`);
         sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, message);
     }
 
@@ -64,6 +71,12 @@ export default class Boat extends Component
         userInfo.find(".hobby").html(user.hobby);
         userInfo.find(".movie").html(user.movie);
         userInfo.find(".food").html(user.food);
+
+        this.setState(
+            {
+                selectedUser: "U1"
+            }
+        )
     }
 
     add_message(text, other=false)
@@ -122,7 +135,7 @@ export default class Boat extends Component
                         </div>
                     </div>
                     <div class="ChatMessageInputContainer">
-                        <input type="text" placeholder="Message"></input>
+                        <input id="SendMessage" type="text" placeholder="Message"></input>
                         <button id="SendButton" >Send</button>
                     </div>
                 </div>
