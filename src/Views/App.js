@@ -1,6 +1,7 @@
 import '../Styles/App.css';
 import Routes from '../Routes'
 import SideBar from './SideBar'
+import AccountCreation from './AccountCreation'
 import {Component} from 'react'
 import $ from 'jquery';
 import googleImage from '../gsignn.png'
@@ -32,8 +33,6 @@ export default class app extends Component
         else{
             firebase.app()
         }
-
-
 
         this.state={
             firebase: firebase,
@@ -74,32 +73,66 @@ export default class app extends Component
                 });
     }
 
-    render(){
+    render()
+    {
         const uid = this.state.uid;
         console.log("RENDER!!!", this.state.firebaseListeners)
-        return uid ?
-           (
-                <div className="App">
-                    <BrowserRouter>
-                        <SideBar firebase={this.state.firebase} uid={this.state.uid} />
-                        <Routes
-                            firebase={this.state.firebase} uid={this.state.uid}
-                                firebaseListener={this.state.firebaseListeners}
-                        />
-                    </BrowserRouter>
-                </div>
-           ) : (
-                        <div className="App">
-                            <button style={{margin: '0 0 0 0 ', padding: '0 0 0 0', border: "0", background: 'none', width: "35vh", height: "8vh",
-                                position: "fixed", left: "20.75%", top: "35%"}}
-                                    onClick={ ()=>{ this.gSignIn(); } }
-                                    onMouseDown={ ()=> { this.click_button(true); }}
-                                    onMouseUp={ ()=> { this.click_button(false); }}>
-                                <img id="signin" src={googleImage} style={{width:"100%", height:"100%"}}></img>
-                            </button>
-                        </div>
-                    )
+        if(uid)
+        {
+            if(undefined != this.state.hasAProfile)
+            {
+                return this.normalView();
+            }
+            else
+            {
+                return this.CreateProfileView();
+            }
+        }
+        else
+        {
+            return this.loginView();
+        }
 
+    }
+
+    normalView()
+    {
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <SideBar firebase={this.state.firebase} uid={this.state.uid} />
+                    <Routes
+                        firebase={this.state.firebase} uid={this.state.uid}
+                        firebaseListener={this.state.firebaseListeners}
+                    />
+                </BrowserRouter>
+            </div>
+        )
+    }
+
+    loginView()
+    {
+        return (
+            <div className="App">
+                <button style={{
+                    margin: '0 0 0 0 ', padding: '0 0 0 0', border: "0", background: 'none', width: "35vh", height: "8vh",
+                    position: "fixed", left: "20.75%", top: "35%"
+                }}
+                    onClick={() => { this.gSignIn(); }}
+                    onMouseDown={() => { this.click_button(true); }}
+                    onMouseUp={() => { this.click_button(false); }}>
+                    <img id="signin" src={googleImage} style={{ width: "100%", height: "100%" }}></img>
+                </button>
+            </div>
+        )
+    }
+
+    CreateProfileView()
+    {
+        this.state.hasAProfile = false;
+        return <div className="App">
+            <AccountCreation hasAProfile = { this.state.hasAProfile }/>
+        </div>
     }
 
 }
