@@ -33,7 +33,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: `calc(-${-7+event.pageX*0.16}vw + 15vw)`
+          nmx: `calc(-${-7+event.pageX*0.20}vw + 15vw)`
         });
     });
 
