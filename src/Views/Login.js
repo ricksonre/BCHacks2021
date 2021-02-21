@@ -12,6 +12,9 @@ export default class Login extends Component{
 			<p>
 				Login
 			</p>
+
+
+
 		)
 	}
   export default Login;

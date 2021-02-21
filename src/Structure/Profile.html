@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+  <head>
+    <link rel="stylesheet" href="/Users/pierrefrigon/Desktop/BCHacks2021/src/Styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <script src="/Users/pierrefrigon/Desktop/BCHacks2021/src/Views/Profile.js"></script>
+  </head>
+
+  <body>
+
+    <header>
+      <div class = "container">
+
+        <img src = "/Users/pierrefrigon/Desktop/BCHacks2021/public/Copy of Copy of Love boat-2.png" alt = "logo" class = "logo">
+
+        <nav>
+          <ul>
+            <li><a href = "#">Your Ships</a></li>
+            <li><a href = "#">Your Boats</a></li>
+            <li><a href = "#">Your Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class = "Preferences">
+    <h2 class = "SectionTitles">Preferences</h2>
+
+      <h3>Distance</h3>
+      <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      </div>
+      <h3>Age</h3>
+      <label for="minage">Minimum</label>
+      <input type="text" id="minage" name="minage"><br><br>
+      <label for="maxage">Maximum</label>
+      <input type="text" id="maxage" name="maxage"><br><br>
+      <h3>Gender</h3>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label><br>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label><br>
+      <input type="radio" id="everone" name="gender" value="everyone">
+      <label for="everyone">Everyone</label>
+      <h3>Looking For</h3>
+      <input type="radio" id="Fun" name="Lookingfor" value="Fun">
+      <label for="Fun">Some Fun</label><br>
+      <input type="radio" id="sterm" name="Lookingfor" value="sterm">
+      <label for="sterm">Short Term</label><br>
+      <input type="radio" id="lterm" name="Lookingfor" value="lterm">
+      <label for="lterm">Long Term</label>
+    </div>
+
+    <div class = "yourprofile">
+      <h2 class = "SectionTitles">Your Profile</h2>
+      <img src = "/Users/pierrefrigon/Desktop/BCHacks2021/public/Profile Card-2.png" alt = "pcard" class = "pcard"> >
+    </div>
+  </body>
