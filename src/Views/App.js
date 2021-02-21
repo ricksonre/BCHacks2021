@@ -80,7 +80,7 @@ export default class app extends Component
         console.log("RENDER!!!", this.state.firebaseListeners)
         if(uid)
         {
-            if(undefined != this.state.hasAProfile)
+            if (undefined != this.state.hasAProfile && false != this.state.hasAProfile)
             {
                 return this.normalView();
             }
