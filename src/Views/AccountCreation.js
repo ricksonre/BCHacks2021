@@ -48,7 +48,7 @@ export default class AccountCreation extends Component{
 
     $("#ship").on("mousemove", (event)=>
     {
-      if (event.pageX < $(window).width() * 0.9 && event.pageX > $(window).width() * 0.05)
+      if (event.pageX < $(window).width() * 0.95 && event.pageX > $(window).width() * 0.05)
       {
           $("#ship").css({ "left": this.state.mx });
           console.log("to tyra");
