@@ -1,0 +1,40 @@
+
+.UserProfile
+{
+    color: black;
+}
+
+.UserProfileContainer
+{
+    margin: 2em 2em 2em 2em;
+    padding: 2em 2em 2em 2em;
+    display: inline-block;
+    width: 45vw;
+    border: 3px solid #84BEFF;
+    border-radius: 3em;
+    text-align: center;
+}
+
+.UserProfileContainer p
+{
+    margin-bottom: 0.75em;
+    margin-top: 0.25em;
+    font-size: larger;
+    font-weight: 500;
+}
+
+
+.UsersContainer
+{
+    margin-right: 0em;
+}
+
+.ButtonsDivs
+{
+    text-align: center;
+}
+
+.btn
+{
+    margin: 0.25em 0.25em 0.25em 0.25em;
+}

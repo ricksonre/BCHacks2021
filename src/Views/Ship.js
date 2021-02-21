@@ -3,6 +3,7 @@ import GetUserIds from "../GetUserIds";
 import GetPotentialMatches from "../GetPotentialMatches";
 import GetUserData from "../GetUserData";
 import MatchUpdater from '../MatchUpdater';
+import "../Styles/Ship.css"
 import {Button, Typography} from "@material-ui/core";
 
 export default class Ship extends Component
@@ -72,8 +73,8 @@ export default class Ship extends Component
     render()
     {
         return (
-            <div>
-            <div style={{ marginTop: '2em', marginLeft: '2em', display: 'inline-block'}}>
+            <div class="UsersContainer">
+            <div class="UserProfileContainer">
 
                 <div style={{display: 'inline-block'}}>
                 <div >
@@ -81,23 +82,23 @@ export default class Ship extends Component
                 </div>
                 <div>
                     {this.state.userOneData && (
-                        <div>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                                <div class="UserProfile">
+                            <Typography>
                                 Name: {this.state.userOneData.name}
                             </Typography>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                            <Typography>
                                 Location: {this.state.userOneData.location}
                             </Typography>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                            <Typography>
                                 Occupation: {this.state.userOneData.occupation}
                             </Typography>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                            <Typography>
                                 Hobby: {this.state.userOneData.hobby}
                             </Typography>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                            <Typography>
                                 Favorite Food: {this.state.userOneData.food}
                             </Typography>
-                            <Typography style={{fontSize: '2em', color: 'white'}}>
+                            <Typography>
                                 Favorite Movie: {this.state.userOneData.movie}
                             </Typography>
 
@@ -105,7 +106,7 @@ export default class Ship extends Component
                     )}</div>
                 </div>
             </div>
-                <div style={{ marginTop: '2em', marginLeft: '2em', display: 'inline-block'}}>
+                <div class="UserProfileContainer">
 
                     <div style={{}}>
                         <div >
@@ -113,36 +114,36 @@ export default class Ship extends Component
                         </div>
                         <div>
                             {this.state.userTwoData && (
-                                <div>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                <div class="UserProfile">
+                                    <Typography>
                                         Name: {this.state.userTwoData.name}
                                     </Typography>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                    <Typography>
                                         Location: {this.state.userTwoData.location}
                                     </Typography>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                    <Typography>
                                         Occupation: {this.state.userTwoData.occupation}
                                     </Typography>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                    <Typography>
                                         Hobby: {this.state.userTwoData.hobby}
                                     </Typography>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                    <Typography>
                                         Favorite Food: {this.state.userTwoData.food}
                                     </Typography>
-                                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                                    <Typography>
                                         Favorite Movie: {this.state.userTwoData.movie}
                                     </Typography>
 
                                 </div>
                             )}</div></div>
                 </div>
-                <div>
-                <Button style={{marginLeft: '10em',backgroundColor: '#084DFF', marginTop: '5em', width: '5em'}} onClick={() => this.SHIP_IT()}>
+                <div class="ButtonsDivs">
+                <Button class="btn btn-success" onClick={() => this.SHIP_IT()}>
                     SHIP IT
                 </Button>
-                    <Button style={{marginLeft: '10em',backgroundColor: '#ff4DFF', marginTop: '5em', width: '10em'}} onClick={() => this.getNewMatch(this.props.firebase)}>
-                        DON'T SHIP IT
-                    </Button>
+                    <Button class="btn btn-danger" onClick={() => this.getNewMatch(this.props.firebase)}>
+                        SINK IT
+                </Button>
             </div>
             </div>
         )
