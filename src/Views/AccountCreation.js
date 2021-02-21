@@ -19,33 +19,32 @@ export default class AccountCreation extends Component{
 
     $(document).mousemove(function(event) {
         context.setState({
-          mx: ""+(event.pageX-17)+"px"
+          mx: ""+(event.pageX-75)+"px"
         });
     });
 
     console.log("hi There");
-    $("#ship").on("mousedown", ()=>
+    $("#ship").on("click", ()=>
     {
         context.setState({
-          md: true
+          md: !context.state.md
         });
 
-
     });
-    $("#ship").on("mouseup", ()=>
-    {
-        context.setState({
-          md: false
-        });
 
+    //$("#ship").on("mouseup", ()=>
+    //{
+    //    context.setState({
+    //      md: false
+    //    });
+    //});
 
-    });
     $("#ship").on("mouseover", ()=>
     {
         console.log("hi there again");
 
     });
-    $("#ship").on("mousemove", ()=>
+    $(document).on("mousemove", ()=>
     {
 
         if(context.state.md){
@@ -60,10 +59,13 @@ export default class AccountCreation extends Component{
 	render(){
 		return(
       <div>
-      <div class= "prompt">
-        <p>Name</p>
-        <input type="text"/>
+      <div class= "outer-container">
+        <div class= "prompt">
+          <p>Name</p>
+          <input type="text"/>
+        </div>
       </div>
+
       <div class= "prompt">
         <p>Birthday</p>
         <input type="date"/>
@@ -89,7 +91,7 @@ export default class AccountCreation extends Component{
         <input type="text"/>
       </div>
       <div id= "ship" >
-        <img id = "imageship" src="icon.png" class="Icon"></img>
+        <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
       </div>
 

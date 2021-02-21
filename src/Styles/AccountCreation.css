@@ -1,4 +1,16 @@
 #imageship,#ship{
   position: absolute;
   color:red;
+  width: 150px;
+  height: 150px;
+}
+
+body {
+  background-color: lightblue;
+}
+
+.App{
+
+  background-color: lightblue;
+
 }
