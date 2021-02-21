@@ -2,6 +2,8 @@ import { Component } from 'react';
 import '../Styles/Boat.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import sendMessage from './../sendMessage'
+import GetUserData from './../GetUserData'
+import getMatches from './../GetMatches'
 import $ from 'jquery'
 
 export default class Boat extends Component
@@ -25,6 +27,13 @@ export default class Boat extends Component
                 context.sendMessage();
             }
         });
+
+        let matches = getMatches(this.props.uid);
+        for (const uid in matches) 
+        {
+            let user = GetUserData(uid);
+            this.add_user(user)
+        }
     }
 
     messageUser = (message) => {
@@ -34,6 +43,18 @@ export default class Boat extends Component
     show_chat(user)
     {
         
+    }
+
+    add_message(text, other=false)
+    {
+        $("<div/>")
+            .attr("class", "MessageContainer")
+            .append(
+                $("<div/>")
+                    .attr("class", `Message ${other? "Other": "User"}`)
+                    .html(text)
+            )
+            .appendTo($(".MessagesContainer"))
     }
 
     add_user(user)
