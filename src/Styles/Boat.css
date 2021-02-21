@@ -6,10 +6,10 @@
 
 #UsersList
 {
-    overflow-y: scroll;
+    overflow-y: auto;
     display: inline-block;
     height: 100vh;
-    width: 45vh;
+    width: 20vw;
     vertical-align: top;
     border-right: 0.20em solid #84BEFF;
     padding-top: 0.25em 0.25em 0.25em 0.25em;
@@ -20,14 +20,16 @@
     display: inline-block;
     vertical-align: top;
     height: 100vh;
-    width: 80vh;
+    width: 55vw;
 }
 
 .MessagesContainer
 {
-    height: 85%;
+    height: 90%;
     margin: 0em 0em 0em 0em;
     overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .ChatMessageInputContainer
@@ -84,10 +86,25 @@
     border-radius: 2em;
     height: 80vh;
     width: 40vh;
-    margin: 5vh 2px 5vh 2px;
+    margin: 5vh 2em 5vh 2em;
+}
+
+.Message
+{
+    color: black;
+    margin: 1em 1em 1em 1em;
+    padding: 1em 1em 1em 1em;
+    border: solid 1px #84bdff31;
+    width: calc(100% - 2em);
+    border-radius: 0.25em;
 }
 
 .Other
 {
-    color: red;
+    text-align: left;
+}
+
+.User
+{
+    text-align: right;
 }
