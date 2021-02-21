@@ -21,6 +21,7 @@ export default class Boat extends Component {
         const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
         ref.onSnapshot(colSnap => {
             colSnap.docs.forEach(data => {
+                console.log("DOC DATA WOOOO", data.data())
                 messageTemp[data.data().otherUser] = {messages: data.data().messages, user: data.data().otherUser};
             })
             this.setState({messages: messageTemp})
