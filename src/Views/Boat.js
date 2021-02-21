@@ -29,14 +29,20 @@ export default class Boat extends Component
         });
 
         getMatches("00000Example", this.props.firebase).then(matches => {
-            console.log("MATCHES", matches)
+            $(".MessagesContainer").empty();
             $.each(matches, (key,val)=>
             {
                 let user = GetUserData(val.userID, this.props.firebase);
+                let first = true;
                 user.then((value)=>
                 {
                     if(null != value)
                     {
+                        if (first)
+                        {
+                            context.showChat(value);
+                            first = false;
+                        }
                         context.add_user(value);
                     }
                 })
@@ -49,9 +55,16 @@ export default class Boat extends Component
         sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, message);
     }
 
-    show_chat(user)
+    showChat(user)
     {
-        
+        let userInfo = $(".UserInformation");
+        console.log(userInfo);
+        userInfo.find(".name").html(user.name);
+        userInfo.find(".age").html(user.birthday);
+        userInfo.find(".location").html(user.location);
+        userInfo.find(".hobby").html(user.hobby);
+        userInfo.find(".movie").html(user.movie);
+        userInfo.find(".food").html(user.food);
     }
 
     add_message(text, other=false)
@@ -78,11 +91,12 @@ export default class Boat extends Component
                     <hr/>
                 </div>
             `);
-
+        
+        let context = this;
         $(".UserContainer")
             .on("click", () =>
             {
-                Boat.showChat(user);
+                context.showChat(user);
             });
     }
 
@@ -112,7 +126,13 @@ export default class Boat extends Component
                     </div>
                 </div>
                 <div class="UserInformation">
-
+                    <img/>
+                    <h3 class="name">asdf</h3>
+                    <h4 class="age">asdf</h4>
+                    <h4 class="location">asdf</h4>
+                    <h4 class="hobby">asdf</h4>
+                    <h4 class="movie">asdf</h4>
+                    <h4 class="food">asdf</h4>
                 </div>
             </div>
         )
