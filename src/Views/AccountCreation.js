@@ -29,7 +29,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: `calc(-${event.pageX*0.17}vw + 15vw)`
+          nmx: `calc(-${event.pageX*0.20}vw + 15vw)`
         });
     });
 
@@ -42,30 +42,19 @@ export default class AccountCreation extends Component{
 
     });
 
-    //$("#ship").on("mouseup", ()=>
-    //{
-    //    context.setState({
-    //      md: false
-    //    });
-    //});
-
-    $("#ship").on("mouseover", (event)=>
-    {
-
-
-    });
     $("#ship").on("mousemove", (event)=>
     {
-      if(true){
-        $("#ship").css({"left": this.state.mx});
-        console.log("to tyra");
-        $(".oouter").css({"left": (this.state.nmx)});
-
-        if(event.pageX>$(window).width()*0.8){
-          this.setState({showSubmit: true})
-        }
+      if (event.pageX < $(window).width() * 0.9 && event.pageX > $(window).width() * 0.05)
+      {
+          $("#ship").css({ "left": this.state.mx });
+          console.log("to tyra");
+          $(".oouter").css({ "left": (this.state.nmx) });
       }
 
+        if(event.pageX>$(window).width()*0.8)
+        {
+          this.setState({showSubmit: true});
+        }
     });
 
   }
@@ -100,12 +89,12 @@ export default class AccountCreation extends Component{
               image: this.state.picture ? mimeDb[this.state.picture[0].type].extensions[0] : false,
           }
 
-        this.setState({hasAProfile: true});
         localStorage.setItem("hasAProfile", true);
 
         UpdateUserProfile(this.props.firebase, data, this.props.uid);
           HandleImage(this.state.picture, this.props.uid, this.props.firebase)
 
+        window.location.href = "";
     }
 
 
@@ -189,13 +178,12 @@ export default class AccountCreation extends Component{
       </div>
           {this.state.showSubmit &&
           (
-              <Link to={'/profile'}>
               <Button style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
               color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
                   Submit
                   <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
               </Button>
-              </Link>)}
+              )}
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>

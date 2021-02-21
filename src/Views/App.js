@@ -40,6 +40,12 @@ export default class app extends Component
             hasAProfile: localStorage.getItem('hasAProfile'),
             firebaseListeners: null
         }
+
+        if(undefined == this.state.hasAProfile)
+        {
+            localStorage.setItem("hasAProfile", false)
+            this.setState({ hasAProfile: false });
+        }
     }
     updateUserId = async (userid) => {
         console.log("HERE WITH UID OF", userid)
@@ -78,10 +84,13 @@ export default class app extends Component
     {
         const uid = this.state.uid;
         console.log("RENDER!!!", this.state.firebaseListeners)
+        console.log("HasAProfile: ", this.state.hasAProfile)
+        console.log(this.state);
         if(uid)
         {
-            if (undefined != this.state.hasAProfile && false != this.state.hasAProfile)
+            if ("true" === this.state.hasAProfile)
             {
+                console.log(1);
                 return this.normalView();
             }
             else
@@ -130,10 +139,8 @@ export default class app extends Component
 
     CreateProfileView()
     {
-        localStorage.setItem("hasAProfile", false)
-        this.setState({hasAProfile: false});
         return <div className="App">
-            <AccountCreation hasAProfile = { this.state.hasAProfile }/>
+            <AccountCreation hasAProfile={this.state.hasAProfile} firebase={this.state.firebase} uid={this.state.uid}/>
         </div>
     }
 
