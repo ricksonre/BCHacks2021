@@ -17,6 +17,7 @@ export default class Boat extends Component {
             userData: null,
             viewed: {},
             unread: {},
+            selectedUserImage: false,
         }
     }
 
@@ -116,6 +117,15 @@ export default class Boat extends Component {
 
         componentDidUpdate()
         {
+            if(this.state.selectedUser){
+                GetUserData(this.state.selectedUser, this.props.firebase).then(data => {
+                    if(data.image){
+                        this.props.firebase.storage().ref().child(this.state.selectedUser + '.' + data.image).getDownloadURL().then(url => {
+                            this.setState({selectedUserImage: url})
+                        })
+                    }
+                })
+            }
             this.updateChat();
         }
 
@@ -198,7 +208,7 @@ export default class Boat extends Component {
                         </div>
                     </div>
                     <div class="UserInformation">
-                        <img/>
+                        <img src={this.state.selectedUserImage}/>
                         <h2 class="name">asdf</h2>
                         <br/>
                         <h4 class="age">asdf</h4>
