@@ -1,21 +1,22 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import '../Styles/SideBar.css'
+import {Link} from 'react-router-dom'
 
 export default function sidebar()
 {
 	return(
 		<div class="SideBar">
-			<a href="/">
+			<Link to="/">
 				<img src="icon.png" class="Icon"></img>
-			</a>
+			</Link>
 			<div class="SideBarButton" >
-				<a href="/ship">Ship</a>
+				<Link to="/ship">Ship</Link>
 			</div>
 			<div class="SideBarButton" >
-				<a href="/yourboat">Your Boat</a>
+				<Link to="/yourboat">Your Boat</Link>
 			</div>
 			<div class="SideBarButton" >
-				<a href="/profile">Profile</a>
+				<Link to="/profile">Profile</Link>
 			</div>
 		</div>
 	)

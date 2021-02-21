@@ -6,6 +6,7 @@ import firebaseHelper from "../firebaseHelper";
 import $ from 'jquery';
 import googleImage from '../gsignn.png'
 import googleImage2 from '../gsignp.png'
+import {BrowserRouter} from "react-router-dom";
 
 export default class app extends Component
 {
@@ -62,11 +63,13 @@ export default class app extends Component
         return uid ?
            (
                 <div className="App">
-                    <SideBar/>
-                    <Routes
-                        firebase={this.state.firebase} uid={this.state.uid}
-                            firebaseListener={this.state.firebaseListeners}
-                    />
+                    <BrowserRouter>
+                        <SideBar/>
+                        <Routes
+                            firebase={this.state.firebase} uid={this.state.uid}
+                                firebaseListener={this.state.firebaseListeners}
+                        />
+                    </BrowserRouter>
                 </div>
            ) : (
                         <div className="App">

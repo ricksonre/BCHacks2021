@@ -14,7 +14,7 @@ export default class routes extends Component{
 	render(){
 		return(
 			<div>
-				<BrowserRouter>
+
 					<main>
 						<div>
 							<Switch>
@@ -26,7 +26,6 @@ export default class routes extends Component{
 							</Switch>
 						</div>
 					</main>
-				</BrowserRouter>
 			</div>
 		)
 	}
