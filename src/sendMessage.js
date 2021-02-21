@@ -1,13 +1,14 @@
 export default function(userOne,userTwo,firebase, message){
 
-	const userOneRef = firebase.firestore().collection('users').doc(userOne).collection('messages').doc(userTwo)
-	const userTwoRef = firebase.firestore().collection('users').doc(userTwo).collection('messages').doc(userOne)
+	const userOneRef = firebase.firestore().collection('users').doc('00000Example').collection('Messages').doc('00000Example')
+	const userTwoRef = firebase.firestore().collection('users').doc('00000Example').collection('Messages').doc('00000Example')
 
-	firebase.firestore().runTransaction( (t) => {
+	firebase.firestore().runTransaction(async (t) => {
 
-		const userOneData = t.get(userOneRef);
+		userOneRef.get().then( userOneData => {
 
-		userOneData.get().then(async (userOneData) => {
+			console.log(userOneData)
+
 			const newMessage = {
 				...userOneData.data(),
 				messages: [ ...userOneData.data()['messages'], {user: userOne, message: message}]
@@ -18,6 +19,8 @@ export default function(userOne,userTwo,firebase, message){
 		})
 
 
+
 	})
+
 
 }
