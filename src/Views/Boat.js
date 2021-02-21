@@ -63,7 +63,7 @@ export default class Boat extends Component
 
     componentDidUpdate()
     {
-        let messages = this.props.firebaseListener;
+        let messages = this.state.messages;
         let context = this;
         $.each(messages.messages, (key, val) =>
         {
