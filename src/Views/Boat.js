@@ -14,7 +14,7 @@ export default class Boat extends Component
         this.state= {
             selectedUser: null,
             userList: [],
-            messages:false
+            messages: {}
         }
     }
 
@@ -24,7 +24,7 @@ export default class Boat extends Component
         const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
         ref.onSnapshot(colSnap => {
             colSnap.docs.forEach(data => {
-                messageTemp.data.data().otherUser = data.data().messages;
+                messageTemp[data.data().otherUser] = data.data().messages;
             })
             this.setState({messages: messageTemp})
         })
