@@ -30,15 +30,12 @@ export default class Boat extends Component
 
         getMatches("00000Example", this.props.firebase).then(matches => {
             $("#UsersList").innerHTML ="";
-            console.log(`AAAAAAAAAAAAAAAAAAAA ${matches}`);
             $.each(matches, (key,val)=>
             {
                 let user = GetUserData(val.userID, this.props.firebase);
                 let first = true;
-                console.log(2);
                 user.then((value)=>
                 {
-                    console.log(1);
                     if(null != value)
                     {
                         if (first)
