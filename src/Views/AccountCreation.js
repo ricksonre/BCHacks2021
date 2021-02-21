@@ -53,10 +53,8 @@ export default class AccountCreation extends Component{
 
         if(event.pageX>$(window).width()*0.8)
         {
-          //XXXXXXXXX
+          this.setState({showSubmit: true});
         }
-      
-
     });
 
   }
@@ -96,6 +94,7 @@ export default class AccountCreation extends Component{
         UpdateUserProfile(this.props.firebase, data, this.props.uid);
           HandleImage(this.state.picture, this.props.uid, this.props.firebase)
 
+        window.location.href = "";
     }
 
 
@@ -179,13 +178,12 @@ export default class AccountCreation extends Component{
       </div>
           {this.state.showSubmit &&
           (
-              <Link to={'/profile'}>
               <Button style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
               color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
                   Submit
                   <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
               </Button>
-              </Link>)}
+              )}
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
