@@ -100,7 +100,6 @@ export default class AccountCreation extends Component{
               image: this.state.picture ? mimeDb[this.state.picture[0].type].extensions[0] : false,
           }
 
-        this.setState({hasAProfile: true});
         localStorage.setItem("hasAProfile", true);
 
         UpdateUserProfile(this.props.firebase, data, this.props.uid);
