@@ -13,6 +13,7 @@ export default class Boat extends Component
         super(props);
         this.state= {
             selectedUser: null,
+            userList: []
         }
     }
 
@@ -93,25 +94,21 @@ export default class Boat extends Component
 
     add_user(user)
     {
-        console.log(user);
-
-        $("#UsersList").append(
-            `
-                <div class="UserContainer">
+        let newUser = (
+                <div class="UserContainer" onClick={() =>
+                {
+                    this.showChat(user);
+                }}>
                     <img class="img-thumbnail"/>
                     <h3>
-                        ${user["name"] != null ? user["name"]: "XXX"}
+                        {user["name"] != null ? user["name"]: "XXX"}
                     </h3>
                     <hr/>
                 </div>
-            `);
-        
-        let context = this;
-        $(".UserContainer")
-            .on("click", () =>
-            {
-                context.showChat(user);
-            });
+            );
+        let users = this.state.userList;
+        this.setState({userList: [...users, newUser]})
+
     }
 
     render()
@@ -119,7 +116,7 @@ export default class Boat extends Component
         return (
             <div class="Boat">
                 <div id="UsersList">
-                    
+                    {this.state.userList}
                 </div>
                 <div class="ChatContainer">
                     <div class="MessagesContainer">
