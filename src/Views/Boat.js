@@ -56,11 +56,13 @@ export default class Boat extends Component {
 
     updateChat() {
 
+        console.log("messages")
+        console.log(this.state.messages)
         $(".MessagesContainer").empty();
-        let messages = this.state.messages;
+        let messages = this.state.messages[this.state.selectedUser];
         let context = this;
-        console.log(messages)
-        if (messages) {
+        if (undefined != messages) 
+        {
 
             $.each(messages.messages, (key, val) => {
                 let other = true;
@@ -69,6 +71,10 @@ export default class Boat extends Component {
                 }
                 context.add_message(val["message"], other);
             })
+        }
+        else
+        {
+            console.log("message is undefined");
         }
     }
 
