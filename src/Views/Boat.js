@@ -21,7 +21,7 @@ export default class Boat extends Component {
         const ref = this.props.firebase.firestore().collection('users').doc('00000Example').collection('Messages')
         ref.onSnapshot(colSnap => {
             colSnap.docs.forEach(data => {
-                messageTemp[data.data().otherUser] = data.data().messages;
+                messageTemp[data.data().otherUser] = {messages: data.data().messages, user: data.data().otherUser};
             })
             this.setState({messages: messageTemp})
         })
@@ -54,9 +54,11 @@ export default class Boat extends Component {
     }
 
     updateChat() {
+
         $(".MessagesContainer").empty();
         let messages = this.state.messages[this.state.selectedUser];
         let context = this;
+        console.log(messages)
         if (messages) {
 
             $.each(messages.messages, (key, val) => {
