@@ -8,7 +8,11 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import UpdateUserProfile from "../UpdateUserProfile";
 import HandleImage from '../HandleImage'
 import mimeDb from "mime-db";
+
+import Popover from '@material-ui/core/Popover';
+
 import {Link} from 'react-router-dom'
+
 
 export default class AccountCreation extends Component{
 
@@ -19,7 +23,7 @@ export default class AccountCreation extends Component{
         md: false,
         mx: "0px",
         nmx: "0px",
-          showSubmit: false,
+          showSubmit: true,
       }
   }
 
@@ -50,11 +54,6 @@ export default class AccountCreation extends Component{
           console.log("to tyra");
           $(".oouter").css({ "left": (this.state.nmx) });
       }
-
-        if(event.pageX>$(window).width()*0.8)
-        {
-          this.setState({showSubmit: true});
-        }
     });
 
   }
@@ -76,17 +75,29 @@ export default class AccountCreation extends Component{
     setupProfile()
     {
 
-          console.log($('#name').val())
-          let data = {
-              name: $('#name').val(),
-              birthday: $('#bday').val(),
-              occupation: $('#occ').val(),
-              hobby: $('#hobby').val(),
-              location: $('#location').val(),
-              food: $('#food').val(),
-              movie: $('#movie').val(),
-              uid: this.props.uid,
-              image: this.state.picture ? mimeDb[this.state.picture[0].type].extensions[0] : false,
+          if($('#name').val()!="" && $('#bday').val()!="" && $('#occ').val()!="" && $('#hobby').val()!="" &&  $('#location').val()!= "" && $('#food').val()!="" && $('#movie').val()!=""){
+            console.log($('#bday').val())
+            let data = {
+                name: $('#name').val(),
+                birthday: $('#bday').val(),
+                occupation: $('#occ').val(),
+                hobby: $('#hobby').val(),
+                location: $('#location').val(),
+                food: $('#food').val(),
+                movie: $('#movie').val(),
+                uid: this.props.uid,
+                image: this.state.picture ? mimeDb[this.state.picture[0].type].extensions[0] : false,
+            }
+
+            UpdateUserProfile(this.props.firebase, data, this.props.uid);
+            HandleImage(this.state.picture, this.props.uid, this.props.firebase)
+            document.location.href = "/home";
+            localStorage.setItem("hasAProfile", true);
+
+          }else{
+              $('#submitBtn').text("Please Fill All The Fields");
+              $('#submitBtn').css('color', 'red');
+
           }
 
 
@@ -183,12 +194,29 @@ export default class AccountCreation extends Component{
       </div>
           {this.state.showSubmit &&
           (
-              <Button style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
+            //<div>
+              <Button id="submitBtn" style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
               color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
                   Submit
                   <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
               </Button>
-              )}
+
+              // <Popover
+              //   id = "pop"
+              //   open = "false"
+              //   anchorEl={null}
+              //   anchorOrigin={{
+              //     vertical: 'top',
+              //     horizontal: 'left',
+              //   }}
+              //   transformOrigin={{
+              //     vertical: 'top',
+              //     horizontal: 'left',
+              //   }}>
+              //   Please fill all the boxes.
+              // </Popover>
+            //</div>
+            )}
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
