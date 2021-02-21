@@ -1,21 +1,32 @@
 export default function(userOne,userTwo,firebase, message){
 
-	const userOneRef = firebase.firestore().collection('users').doc(userOne).collection('messages').doc(userTwo)
-	const userTwoRef = firebase.firestore().collection('users').doc(userTwo).collection('messages').doc(userOne)
+	const userOneRef = firebase.firestore().collection('users').doc('00000Example').collection('Messages').doc('00000Example')
+	const userTwoRef = firebase.firestore().collection('users').doc('00000Example').collection('Messages').doc('00000Example')
 
-	firebase.firestore().runTransaction( (t) => {
+	firebase.firestore().runTransaction(async (t) => {
 
-		const userOneData = t.get(userOneRef);
+		let newMessage
+		let exists = false
+		await userOneRef.get().then( userOneData => {
 
-		userOneData.get().then(async (userOneData) => {
-			const newMessage = {
-				...userOneData.data(),
-				messages: [ ...userOneData.data()['messages'], {user: userOne, message: message}]
+			if(userOneData.data()) {
+				newMessage = {
+					messages: [...userOneData.data()['messages'], {user: userOne, message: message}]
+				}
+				exists = true;
 			}
 
-			t.set(userTwoRef, newMessage);
-			t.set(userOneRef, newMessage);
+
 		})
+		if(exists) {
+			t.update(userOneRef, newMessage);
+			t.update(userTwoRef, newMessage);
+		}
+		else{
+			t.set(userOneRef, {otherUser: userTwo, messages: [{message: message, user: userOne}]})
+			t.set(userTwoRef, {otherUser: userOne, messages: [{message: message, user: userOne}]})
+		}
 	})
+
 
 }
