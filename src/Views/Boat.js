@@ -65,19 +65,20 @@ export default class Boat extends Component
     updateChat()
     {
         $(".MessagesContainer").empty();
-        let messages = this.state.messages;
+        let messages = this.state.messages[this.state.selectedUser];
         let context = this;
-        if(messages){
-
-        $.each(messages.messages, (key, val) =>
+        if(undefined != messages)
         {
-            let other = true;
-            if (val["user"] === context.props.uid)
+            $.each(messages.messages, (key, val) =>
             {
-                other = false;
-            }
-            context.add_message(val["message"], other);
-        })
+                let other = true;
+                if (val["user"] === context.props.uid)
+                {
+                    other = false;
+                }
+                context.add_message(val["message"], other);
+            })
+        }
     }
 
     componentDidUpdate()
