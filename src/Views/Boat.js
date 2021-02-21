@@ -55,7 +55,6 @@ export default class Boat extends Component {
     }
 
     updateChat() {
-
         console.log("messages")
         console.log(this.state.messages)
         $(".MessagesContainer").empty();
@@ -101,7 +100,7 @@ export default class Boat extends Component {
 
             this.setState(
                 {
-                    selectedUser: "U1"
+                    selectedUser: user.uid
                 }
             )
         }
