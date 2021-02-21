@@ -46,8 +46,8 @@ export default class Boat extends Component {
             getMatches(this.props.uid, this.props.firebase).then(matches => {
                 $("#UsersList").innerHTML = "";
                 $.each(matches, (key, val) => {
-                    let user = GetUserData(val.userID, this.props.firebase);
-                    viewed[val.userID] = data[`viewedFrom${val.userID}`]?data[`viewedFrom${val.userID}`]:0;
+                    let user = GetUserData(val.uid, this.props.firebase);
+                    viewed[val.uid] = data[`viewedFrom${val.uid}`]?data[`viewedFrom${val.uid}`]:0;
                     let first = true;
                     user.then((value) => {
                         if (null != value) {
