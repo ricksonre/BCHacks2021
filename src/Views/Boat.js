@@ -156,13 +156,14 @@ export default class Boat extends Component {
                             </div>
                         </div>
                         <div class="ChatMessageInputContainer">
-                            <input id="SendMessage" type="text" placeholder="Message"></input>
-                            <button id="SendButton">Send</button>
+                            <input id="SendMessage" class="form-control" type="text" placeholder="Message"></input>
+                            <button id="SendButton" class="btn btn-secondary">Send</button>
                         </div>
                     </div>
                     <div class="UserInformation">
                         <img/>
-                        <h3 class="name">asdf</h3>
+                        <h2 class="name">asdf</h2>
+                        <br/>
                         <h4 class="age">asdf</h4>
                         <h4 class="location">asdf</h4>
                         <h4 class="hobby">asdf</h4>
