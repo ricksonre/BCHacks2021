@@ -91,24 +91,16 @@ export default class AccountCreation extends Component{
 
             UpdateUserProfile(this.props.firebase, data, this.props.uid);
             HandleImage(this.state.picture, this.props.uid, this.props.firebase)
-            document.location.href = "/home";
-            localStorage.setItem("hasAProfile", true);
+              setTimeout(() => {
+                  localStorage.setItem("hasAProfile", true);
+                  window.location.href = "";
+              }, 2000);
 
           }else{
               $('#submitBtn').text("Please Fill All The Fields");
               $('#submitBtn').css('color', 'red');
 
           }
-
-
-
-        UpdateUserProfile(this.props.firebase, data, this.props.uid);
-          HandleImage(this.state.picture, this.props.uid, this.props.firebase)
-
-        setTimeout(() => {
-            localStorage.setItem("hasAProfile", true);
-            window.location.href = "";
-        }, 2000);
 
 
     }
