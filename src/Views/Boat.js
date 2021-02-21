@@ -28,17 +28,20 @@ export default class Boat extends Component
             }
         });
 
-        let matches = getMatches(this.props.uid, this.props.firebase);
-        for (const uid in matches) 
-        {
-            console.log(uid)
-            let user = GetUserData(uid, this.props.firebase);
-            user.then((value)=>
+        getMatches(this.props.uid, this.props.firebase).then(matches => {
+            console.log("MATCHES", matches)
+            for (const uid in matches)
             {
-                console.log(value);
-                ///context.add_user(value);
-            })
-        }
+                console.log(uid)
+                let user = GetUserData(uid, this.props.firebase);
+                user.then((value)=>
+                {
+                    console.log(value);
+                    ///context.add_user(value);
+                })
+            }
+        })
+
     }
 
     messageUser = (message) => {

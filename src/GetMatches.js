@@ -1,14 +1,11 @@
-export default function(uid, firebase){
+export default async function(uid, firebase){
 
-	const db = firebase.firestore();
+	const results = [];
 
-	const matchRefernces = db.collection('users').doc(uid).collection('Matches');
-
-	const matches = [];
-	for (const uid in matchRefernces) 
-	{
-		matches.push(uid)
-	}
-	return matches
-
+	await firebase.firestore().collection('users').doc('00000Example').collection('Matches').get().then(matchRefernces => {
+		matchRefernces.docs.forEach(doc => {
+			results.push(doc.data());
+			})
+	})
+	return results;
 }
