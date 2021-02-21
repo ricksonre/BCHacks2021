@@ -5,7 +5,7 @@ export default function(firstUser, secondUser, firebase)
 	const potentialMatches = firstUser.collection('PotentialMatches').doc(secondUser);
 	const potentialMatchesSecond = secondUser.collection('PotentialMatches').doc(firstUser);
 	return firebase.firestore().runTransaction(async(t) => {
-		t.get(potentialMatches).then(matchNum => {
+		potentialMatches.get().then(matchNum => {
 			matchNum = matchNum.data()['MatchCount']++;
 			t.set(potentialMatchesSecond, {MatchCount: matchNum})
 			t.set(potentialMatches, {MatchCount: matchNum})
