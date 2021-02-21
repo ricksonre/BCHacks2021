@@ -5,11 +5,10 @@ export default function(uid, firebase){
 	const matchRefernces = db.collection('users').doc(uid).collection('Matches');
 
 	const matches = [];
-
-	matchRefernces.forEach(ref => {
-		matches.push(ref.id);
-	})
-
+	for (const uid in matchRefernces) 
+	{
+		matches.push(uid)
+	}
 	return matches
 
 }
