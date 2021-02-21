@@ -3,6 +3,11 @@ import $ from 'jquery';
 import animate from 'jquery';
 import '../Styles/AccountCreation.css';
 import ImageUploader from 'react-images-upload'
+import Button from '@material-ui/core/Button'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import UpdateUserProfile from "../UpdateUserProfile";
+import HandleImage from '../HandleImage'
+import mimeDb from "mime-db";
 
 export default class AccountCreation extends Component{
 
@@ -12,7 +17,8 @@ export default class AccountCreation extends Component{
       this.state= {
         md: false,
         mx: "0px",
-        nmx: "0px"
+        nmx: "0px",
+          showSubmit: false,
       }
   }
 
@@ -22,7 +28,7 @@ export default class AccountCreation extends Component{
     $(document).mousemove(function(event) {
         context.setState({
           mx: ""+(event.pageX-75)+"px",
-          nmx: "-"+(event.pageX*2)/20+"vw"
+          nmx: `calc(-${event.pageX*0.17}vw + 15vw)`
         });
     });
 
@@ -55,8 +61,8 @@ export default class AccountCreation extends Component{
           console.log("to tyra");
           $(".oouter").css({"left": (this.state.nmx)});
 
-          if(event.pageX>$(window).width()*0.95){
-            window.location.href = "/home";
+          if(event.pageX>$(window).width()*0.8){
+            this.setState({showSubmit: true})
           }
         }
 
@@ -64,20 +70,40 @@ export default class AccountCreation extends Component{
     });
 
   }
-  readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+      readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result)
-                        .width(150)
-                        .height(200);
-                };
+                    reader.onload = function (e) {
+                        $('#blah')
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);
+                    };
 
-                reader.readAsDataURL(input.files[0]);
-            }
-  }
+                    reader.readAsDataURL(input.files[0]);
+                }
+      }
+
+    setupProfile(){
+
+          console.log($('#name').val())
+          let data = {
+              name: $('#name').val(),
+              birthday: $('#bday').val(),
+              occupation: $('#occ').val(),
+              hobby: $('#hobby').val(),
+              location: $('#location').val(),
+              food: $('#food').val(),
+              movie: $('#movie').val(),
+              uid: this.props.uid,
+              image: this.state.picture ? mimeDb[this.state.picture[0].type].extensions[0] : false,
+          }
+
+        UpdateUserProfile(this.props.firebase, data, this.props.uid);
+          HandleImage(this.state.picture, this.props.uid, this.props.firebase)
+
+    }
 
 
 	render(){
@@ -88,7 +114,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Profile Picture</p>
-            <ImageUploader withPreview="true"/>
+            <ImageUploader withPreview="true" onChange={(pic) => this.setState({picture: pic})} singleImage={true}/>
           </div>
         </div>
       </div>
@@ -97,7 +123,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Name</p>
-            <input type="text" maxlength="20"/>
+            <input id={'name'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -106,7 +132,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Birthday</p>
-            <input type="date"/>
+            <input id={'bday'} type="date"/>
           </div>
         </div>
       </div>
@@ -115,7 +141,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Occupation</p>
-            <input type="text" maxlength="20"/>
+            <input id={'occ'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -124,7 +150,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Hobby</p>
-            <input type="text" maxlength="20"/>
+            <input id={'hobby'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -133,7 +159,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Location</p>
-            <input type="text" maxlength="20"/>
+            <input id={'location'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -142,7 +168,7 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Favorite Food</p>
-            <input type="text" maxlength="20"/>
+            <input id={'food'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
@@ -151,16 +177,25 @@ export default class AccountCreation extends Component{
         <div class= "prompt">
           <div class= "inner-container">
             <p>Favorite Movie</p>
-            <input type="text" maxlength="20"/>
+            <input id={'movie'} type="text" maxlength="20"/>
           </div>
         </div>
       </div>
 
 
       </div>
+          {this.state.showSubmit &&
+          (
+              <Button style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
+              color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
+                  Submit
+                  <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
+              </Button>)}
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
+
+
       </div>
 
 
