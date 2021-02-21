@@ -29,13 +29,16 @@ export default class Boat extends Component
         });
 
         getMatches("00000Example", this.props.firebase).then(matches => {
-            $(".MessagesContainer").empty();
+            $("#UsersList").innerHTML ="";
+            console.log(`AAAAAAAAAAAAAAAAAAAA ${matches}`);
             $.each(matches, (key,val)=>
             {
                 let user = GetUserData(val.userID, this.props.firebase);
                 let first = true;
+                console.log(2);
                 user.then((value)=>
                 {
+                    console.log(1);
                     if(null != value)
                     {
                         if (first)
@@ -58,7 +61,6 @@ export default class Boat extends Component
     showChat(user)
     {
         let userInfo = $(".UserInformation");
-        console.log(userInfo);
         userInfo.find(".name").html(user.name);
         userInfo.find(".age").html(user.birthday);
         userInfo.find(".location").html(user.location);
@@ -81,12 +83,14 @@ export default class Boat extends Component
 
     add_user(user)
     {
+        console.log(user);
+
         $("#UsersList").append(
             `
                 <div class="UserContainer">
                     <img class="img-thumbnail"/>
                     <h3>
-                        ${user["name"] != null ? user["name"]: "Name Missing"}
+                        ${user["name"] != null ? user["name"]: "XXX"}
                     </h3>
                     <hr/>
                 </div>
