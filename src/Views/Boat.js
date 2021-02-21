@@ -6,7 +6,6 @@ import $ from 'jquery'
 
 export default class Boat extends Component
 {
-
     constructor(props)
     {
         super(props);
@@ -15,8 +14,21 @@ export default class Boat extends Component
         }
     }
 
+    componentDidMount()
+    {
+        let context =  this;
+        $("#SendButton").on("click", ()=>
+        {
+            let message = $(".ChatMessageInputContainer").find("input").html();
+            if(message.length > 0)
+            {
+                context.sendMessage();
+            }
+        });
+    }
+
     messageUser = (message) => {
-        sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, this.state.message);
+        sendMessage(this.props.uid, this.state.selectedUser, this.props.firebase, message);
     }
 
     show_chat(user)
@@ -73,7 +85,7 @@ export default class Boat extends Component
                     </div>
                     <div class="ChatMessageInputContainer">
                         <input type="text" placeholder="Message"></input>
-                        <button>Send</button>
+                        <button id="SendButton" >Send</button>
                     </div>
                 </div>
                 <div class="UserInformation">
