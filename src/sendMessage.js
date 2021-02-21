@@ -6,21 +6,26 @@ export default function(userOne,userTwo,firebase, message){
 	firebase.firestore().runTransaction(async (t) => {
 
 		let newMessage
-
+		let exists = false
 		await userOneRef.get().then( userOneData => {
 
-			console.log(userOneData.data)
-
-			newMessage = {
-				...userOneData.data(),
-				messages: [ ...userOneData.data()['messages'], {user: userOne, message: message}]
+			if(userOneData.data()) {
+				newMessage = {
+					messages: [...userOneData.data()['messages'], {user: userOne, message: message}]
+				}
+				exists = true;
 			}
 
 
 		})
-
-		t.set(userOneRef, newMessage);
-		t.set(userTwoRef, newMessage);
+		if(exists) {
+			t.update(userOneRef, newMessage);
+			t.update(userTwoRef, newMessage);
+		}
+		else{
+			t.set(userOneRef, {otherUser: userTwo, messages: [{message: message, user: userOne}]})
+			t.set(userTwoRef, {otherUser: userOne, messages: [{message: message, user: userOne}]})
+		}
 	})
 
 
