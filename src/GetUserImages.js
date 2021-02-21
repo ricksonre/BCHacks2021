@@ -1,9 +1,11 @@
 export default async function(uid, firebase){
+	const results = [];
 
-	const db = firebase.firestore();
-
-	const userImages = await db.collection('users').doc(uid).collection('Images').get()
-
-	return userImages.docs.map(doc => doc.data()['ImageLink']);
+	await firebase.firestore().collection('users').doc(uid).collection('Images').get().then(matchRefernces => {
+		matchRefernces.docs.forEach(doc => {
+			results.push(doc.data());
+		})
+	})
+	return results;
 
 }

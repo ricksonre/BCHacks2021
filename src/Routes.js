@@ -19,7 +19,7 @@ export default class routes extends Component{
 						<div>
 							<Switch>
 								<Route path={'/ship'} component={() => <Ship firebase={this.props.firebase} uid={this.props.uid}/>}/>
-								<Route path={'/yourboat'} component={() =>(<Boat firebase={this.props.firebase} uid={this.props.uid}/>)}/>
+								<Route path={'/yourboat'} component={() =>(<Boat firebase={this.props.firebase} uid={this.props.uid}/>)} firebaseListeners={this.props.firebaseListeners}/>
 								<Route path={'/profile'} component={() => (<Profile firebase={this.props.firebase} uid={this.props.uid}/>)}/>
 								<Route path={'/home'} component={() => (<Home firebase={this.props.firebase} uid={this.props.uid}/>)}/>
 								<Route path={'/accountcreation'} component={() => (<AccountCreation firebase={this.props.firebase} uid={this.props.uid}/>)}/>
