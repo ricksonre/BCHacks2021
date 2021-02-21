@@ -43,7 +43,7 @@ export default class app extends Component
     }
     updateUserId = async (userid) => {
         console.log("HERE WITH UID OF", userid)
-       
+
         this.setState({uid: userid.toString()})
         localStorage.setItem('uid', userid)
     }
@@ -81,7 +81,7 @@ export default class app extends Component
            (
                 <div className="App">
                     <BrowserRouter>
-                        <SideBar/>
+                        <SideBar firebase={this.state.firebase} uid={this.state.uid} />
                         <Routes
                             firebase={this.state.firebase} uid={this.state.uid}
                                 firebaseListener={this.state.firebaseListeners}

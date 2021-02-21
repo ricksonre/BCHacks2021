@@ -5,6 +5,7 @@ import sendMessage from './../sendMessage'
 import GetUserData from './../GetUserData'
 import getMatches from './../GetMatches'
 import $ from 'jquery'
+import UpdateUserProfile from "../UpdateUserProfile";
 
 export default class Boat extends Component {
     constructor(props) {
@@ -12,7 +13,10 @@ export default class Boat extends Component {
         this.state = {
             selectedUser: null,
             userList: [],
-            messages: {}
+            messages: {},
+            userData: null,
+            viewed: {},
+            unread: {},
         }
     }
 
@@ -35,32 +39,65 @@ export default class Boat extends Component {
             }
             $("#SendMessage").val("");
         });
-
-        getMatches(this.props.uid, this.props.firebase).then(matches => {
-            $("#UsersList").innerHTML = "";
-            $.each(matches, (key, val) => {
-                let user = GetUserData(val.userID, this.props.firebase);
-                let first = true;
-                user.then((value) => {
-                    if (null != value) {
-                        if (first) {
-                            context.showChat(value);
-                            first = false;
+        GetUserData(this.props.uid, this.props.firebase).then(data => {
+            this.setState({userData: data})
+            let viewed = this.state.viewed
+            getMatches(this.props.uid, this.props.firebase).then(matches => {
+                $("#UsersList").innerHTML = "";
+                $.each(matches, (key, val) => {
+                    let user = GetUserData(val.userID, this.props.firebase);
+                    viewed[val.userID] = data[`viewedFrom${val.userID}`]?data[`viewedFrom${val.userID}`]:0;
+                    let first = true;
+                    user.then((value) => {
+                        if (null != value) {
+                            if (first) {
+                                context.showChat(value);
+                                first = false;
+                            }
+                            context.add_user(value);
                         }
-                        context.add_user(value);
-                    }
+                    })
                 })
+                this.setState({viewed:viewed})
             })
         })
+
+
+
     }
 
     updateChat() {
+        if(this.state.userData && this.state.messages[this.state.selectedUser]){
+            const newData = {
+                ...this.state.userData
+            }
+            newData[`viewedFrom${this.state.selectedUser}`] = this.state.messages[this.state.selectedUser].messages.length;
+            UpdateUserProfile(this.props.firebase, newData, this.props.uid)
+        }
+        let unread={}
+        Object.keys(this.state.messages).forEach((key) =>{
+            if(this.state.selectedUser && this.state.selectedUser.otherUser !== key) {
+                if (this.state.messages.key) {
+                    let diff = this.state.viewed.key - this.state.messages.key.messages.length;
+                    unread.key = diff;
+                    const value = $(`userInfo${key}`).text();
+                    let num = value.split(':')
+                    let temp = ''
+                    for (let i = 0; i < num - 1; i++) {
+                        temp += value[i] + ':'
+                    }
+                    temp += diff;
+                    $(`userInfo${key}`).text(temp)
+
+                }
+            }
+        } )
         console.log("messages")
         console.log(this.state.messages)
         $(".MessagesContainer").empty();
         let messages = this.state.messages[this.state.selectedUser];
         let context = this;
-        if (undefined != messages) 
+        if (messages)
         {
 
             $.each(messages.messages, (key, val) => {
@@ -124,8 +161,8 @@ export default class Boat extends Component {
                     this.showChat(user);
                 }}>
                     <img class="img-thumbnail"/>
-                    <h3>
-                        {user["name"] != null ? user["name"] : "XXX"}
+                    <h3 id={`userInfo${user.uid}`}>
+                        {user["name"] != null ? user["name"] : "XXX"}, Unread: {this.state.messages.user && this.state.viewed.user ? this.state.messages.user.uid.messages.length - this.state.viewed.user.uid : 0}
                     </h3>
                     <hr/>
                 </div>
