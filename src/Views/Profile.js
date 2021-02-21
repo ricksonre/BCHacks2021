@@ -36,22 +36,22 @@ export default class Profile extends Component
                 <div style={{marginLeft: '10em',display: 'inline-block'}}>
             {this.state.userData && (
                 <div>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Name: {this.state.userData.name}
                     </Typography>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Location: {this.state.userData.location}
                     </Typography>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Occupation: {this.state.userData.occupation}
                     </Typography>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Hobby: {this.state.userData.hobby}
                     </Typography>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Favorite Food: {this.state.userData.food}
                     </Typography>
-                    <Typography style={{fontSize: '2em', color: 'white'}}>
+                    <Typography style={{fontSize: '2em'}}>
                         Favorite Movie: {this.state.userData.movie}
                     </Typography>
 
