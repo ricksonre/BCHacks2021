@@ -61,19 +61,25 @@ export default class Boat extends Component
         })
     }
 
-    componentDidUpdate()
+    updateChat()
     {
+        $(".MessagesContainer").empty();
         let messages = this.state.messages;
         let context = this;
         $.each(messages.messages, (key, val) =>
         {
             let other = true;
-            if(val["user"] === context.props.uid)
+            if (val["user"] === context.props.uid)
             {
                 other = false;
             }
-            context.add_message(val["message"],other);
+            context.add_message(val["message"], other);
         })
+    }
+
+    componentDidUpdate()
+    {
+        this.updateChat();
     }
 
     messageUser = (message) => {
@@ -83,6 +89,7 @@ export default class Boat extends Component
 
     showChat(user)
     {
+        this.updateChat();
         let userInfo = $(".UserInformation");
         userInfo.find(".name").html(user.name);
         userInfo.find(".age").html(user.birthday);
