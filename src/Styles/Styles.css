@@ -13,6 +13,7 @@ body{
 
 header{
     background: #84BEFF;
+    margin-bottom: 20px;
 }
 
 header::after{
@@ -139,4 +140,29 @@ nav a:hover::before{
   right: 120px;
   bottom: 550px;
 
+}
+
+.lcard{
+
+  float: left;
+}
+
+.rcard{
+  float: right;
+}
+
+.sButton{
+  position: relative;
+  left: 170px;
+  top: 100px;
+  margin: 0 autp;
+}
+
+.cprof{
+  float: right;
+  margin-right: 20px;
+}
+
+.clist{
+  margin-left: 2
 }
