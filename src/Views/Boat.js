@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import '../Styles/Boat.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from "jquery";
 
 export default class Boat extends Component
 {
@@ -10,83 +11,44 @@ export default class Boat extends Component
         super(props);
     }
 
+    show_chat(user)
+    {
+        
+    }
+
+    add_user(user)
+    {
+        let userList = $("<div/>")
+                        .attr("class", "UserContainer")
+                        .on("click", ()=>
+                        {
+                            Boat.show_chat(user);
+                        });
+
+        $("<img />")
+            .attr("class", "img-thumbnail")
+            .attr("src", user.img)
+            .appendTo(userList);
+
+        $("<h3/>")
+            .html(user.name)
+            .appendTo(userList);
+        
+        $("<hr/>")
+            .appendTo(userList
+                );
+
+        userList.appendTo("#UserList");
+
+
+    }
+
     render()
     {
         return (
             <div class="Boat">
-                <div class="UsersList">
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
-                    <div class="UserContainer">
-                        <i class="bi bi-card-image">
-                            <img class="img-thumbnail" />
-                        </i>
-                        <h3>
-                            User Name
-                        </h3>
-                        <hr/>
-                    </div>
+                <div id="UsersList">
+                    
                 </div>
                 <div class="ChatContainer">
                     <div class="MessagesContainer">

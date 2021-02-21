@@ -4,7 +4,7 @@
     vertical-align: top;
 }
 
-.UsersList
+#UsersList
 {
     overflow-y: scroll;
     display: inline-block;
