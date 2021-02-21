@@ -48,24 +48,22 @@ export default class AccountCreation extends Component{
     //    });
     //});
 
-    $("#ship").on("mouseover", ()=>
+    $("#ship").on("mouseover", (event)=>
     {
-        console.log("hi there again");
+
 
     });
-    $(document).on("mousemove", (event)=>
+    $("#ship").on("mousemove", (event)=>
     {
+      if(true){
+        $("#ship").css({"left": this.state.mx});
+        console.log("to tyra");
+        $(".oouter").css({"left": (this.state.nmx)});
 
-        if(context.state.md){
-          $("#ship").css({"left": this.state.mx});
-          console.log("to tyra");
-          $(".oouter").css({"left": (this.state.nmx)});
-
-          if(event.pageX>$(window).width()*0.8){
-            this.setState({showSubmit: true})
-          }
+        if(event.pageX>$(window).width()*0.8){
+          this.setState({showSubmit: true})
         }
-
+      }
 
     });
 
