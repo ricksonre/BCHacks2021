@@ -136,6 +136,14 @@ export default class Boat extends Component {
 
         showChat(user)
         {
+            if (user && user.image)
+            {
+                this.props.firebase.storage().ref().child(this.props.uid + '.' + user.image).getDownloadURL().then(url =>
+                {
+                    this.setState({ image: url })
+                })
+            }
+
             this.updateChat();
             let userInfo = $(".UserInformation");
             userInfo.find(".name").html(user.name);
@@ -170,7 +178,7 @@ export default class Boat extends Component {
                 <div class="UserContainer" onClick={() => {
                     this.showChat(user);
                 }}>
-                    <img class="img-thumbnail"/>
+                    <img class="img-thumbnail" src={this.state.image} />
                     <h3 id={`userInfo${user.uid}`}>
                         {user["name"] != null ? user["name"] : "XXX"}, Unread: {this.state.messages.user && this.state.viewed.user ? this.state.messages.user.uid.messages.length - this.state.viewed.user.uid : 0}
                     </h3>
