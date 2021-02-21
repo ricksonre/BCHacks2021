@@ -1,11 +1,9 @@
 export default function(userOne,userTwo,firebase, message){
 
-	const db = firebase.firestore();
+	const userOneRef = firebase.firestore().collection('users').doc(userOne).collection('messages').doc(userTwo)
+	const userTwoRef = firebase.firestore().collection('users').doc(userTwo).collection('messages').doc(userOne)
 
-	const userOneRef = db.collection('users').doc(userOne).collection('messages').doc(userTwo)
-	const userTwoRef = db.collection('users').doc(userTwo).collection('messages').doc(userOne)
-
-	db().runTransaction( (t) => {
+	firebase.firestore().runTransaction( (t) => {
 
 		const userOneData = t.get(userOneRef);
 
