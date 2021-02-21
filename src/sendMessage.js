@@ -5,21 +5,22 @@ export default function(userOne,userTwo,firebase, message){
 
 	firebase.firestore().runTransaction(async (t) => {
 
-		userOneRef.get().then( userOneData => {
+		let newMessage
 
-			console.log(userOneData)
+		await userOneRef.get().then( userOneData => {
 
-			const newMessage = {
+			console.log(userOneData.data)
+
+			newMessage = {
 				...userOneData.data(),
 				messages: [ ...userOneData.data()['messages'], {user: userOne, message: message}]
 			}
 
-			t.set(userTwoRef, newMessage);
-			t.set(userOneRef, newMessage);
+
 		})
 
-
-
+		t.set(userOneRef, newMessage);
+		t.set(userTwoRef, newMessage);
 	})
 
 
