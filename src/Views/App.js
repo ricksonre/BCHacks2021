@@ -15,10 +15,9 @@ export default class app extends Component
         super(props);
 
         const firebase = firebaseHelper();
-
         this.state={
             firebase: firebase,
-            uid: undefined,
+            uid: localStorage.getItem('uid') ? localStorage.getItem('uid') : undefined,
             firebaseListeners: null
         }
     }
@@ -29,7 +28,7 @@ export default class app extends Component
             this.setState({firebaseListeners: colSnap})
         })
         this.setState({uid: userid.toString()})
-        console.log("HERE USER UPDATED")
+        localStorage.setItem('uid', userid)
     }
 
     click_button(state)
