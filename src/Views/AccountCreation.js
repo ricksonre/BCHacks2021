@@ -187,7 +187,7 @@ export default class AccountCreation extends Component{
           {this.state.showSubmit &&
           (
             //<div>
-              <Button id="submitBtn" style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '20%',
+              <Button id="submitBtn" style={{width: '20em', height: '5em', backgroundColor: '#084DFF', position: 'absolute', left: 'calc(50% - 10em)', bottom: '5%',
               color: 'white', fontWeight: 'bold', fontSize: '1.1em'}} onClick={() => this.setupProfile()}>
                   Submit
                   <ArrowForwardIosIcon fontsize={'sm'} style={{marginLeft: '1em'}}/>
@@ -209,9 +209,12 @@ export default class AccountCreation extends Component{
               // </Popover>
             //</div>
             )}
+ 
       <div id= "ship" >
         <img id = "imageship" src="Boat.png" class="Icon"></img>
       </div>
+      <div class="BarBelowBoat">
+        </div>
 
 
       </div>
