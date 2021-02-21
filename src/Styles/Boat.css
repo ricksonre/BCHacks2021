@@ -1,0 +1,87 @@
+
+.Boat
+{
+    vertical-align: top;
+}
+
+.UsersList
+{
+    overflow-y: scroll;
+    display: inline-block;
+    height: 100vh;
+    width: 45vh;
+    vertical-align: top;
+    border-right: 0.20em solid #84BEFF;
+    padding-top: 0.25em 0.25em 0.25em 0.25em;
+}
+
+.ChatContainer
+{
+    display: inline-block;
+    vertical-align: top;
+    height: 100vh;
+    width: 80vh;
+}
+
+.MessagesContainer
+{
+    height: 85%;
+    margin: 0em 0em 0em 0em;
+}
+
+.ChatMessageInputContainer
+{
+    text-align: center;
+}
+
+.ChatMessageInputContainer input
+{
+    width: 60%;
+    display: inline-block;
+}
+
+.ChatMessageInputContainer button
+{
+    display: inline-block;
+}
+
+.UserContainer
+{
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.25em 0.25em 0.25em 0.25em;
+    text-align: left;
+    color: white;
+    vertical-align: middle;
+}
+
+.UserContainer img
+{
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0.25em 0.25em 0.25em 0.25em;
+    width: 2.75em;
+    height: 2.75em;
+}
+
+.UserContainer h3
+{
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0.25em 0.25em 0.25em 0.25em;
+}
+
+.UserContainer:hover
+{
+    background-color: white;
+    cursor: pointer;
+}
+
+.UserInformation
+{
+    display: inline-block;
+    border: 2px solid #84BEFF;
+    border-radius: 2em;
+    height: 80vh;
+    width: 40vh;
+    margin: 5vh 2px 5vh 2px;
+}
