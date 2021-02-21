@@ -62,7 +62,7 @@ export default class Ship extends Component
         this.setState({hasShipped: true})
         console.log(this.state.userOne, this.state.userTwo)
         MatchUpdater(this.state.userOne, this.state.userTwo, this.props.firebase).then(data => {
-            this.getNewMatch()
+            this.getNewMatch(this.props.firebase)
             console.log(data)
         })
     }
