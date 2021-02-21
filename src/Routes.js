@@ -12,11 +12,11 @@ export default function routes(){
 			<main>
 				<div>
 					<Switch>
-						<Route path={'/ship'} component={Ship}/>
-						<Route path={'/yourboat'} component={Boat}/>
-						<Route path={'/profile'} component={Profile}/>
-						<Route path={'/home'} component={Home}/>
-						<Route path={'/accountcreation'} component={AccountCreation}/>
+						<Route path={'/ship'} component={() => <Ship firebase={this.props.firebase} uid={this.props.uid}/>}/>
+						<Route path={'/yourboat'} component={() => <Boat firebase={this.props.firebase} uid={this.props.uid}/>}/>
+						<Route path={'/profile'} component={() => <Profile firebase={this.props.firebase} uid={this.props.uid}/>}/>
+						<Route path={'/home'} component={() => <Home firebase={this.props.firebase} uid={this.props.uid}/>}/>
+						<Route path={'/accountcreation'} component={() => <AccountCreation firebase={this.props.firebase} uid={this.props.uid}/>}/>
 					</Switch>
 				</div>
 			</main>
