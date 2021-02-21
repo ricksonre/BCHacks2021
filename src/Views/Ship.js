@@ -37,7 +37,7 @@ export default class Ship extends Component
         GetUserData(uid, firebase).then(data => {
             this.setState({userOneData: data})
             if(data.image){
-                firebase.storage().ref().child(this.props.uid + '.' + data.image).getDownloadURL().then(url => {
+                firebase.storage().ref().child(uid + '.' + data.image).getDownloadURL().then(url => {
                     this.setState({userOneImage: url})
                 })
             }
@@ -45,7 +45,7 @@ export default class Ship extends Component
         GetUserData(secondId, firebase).then(data => {
             this.setState({userTwoData: data})
             if(data.image){
-                firebase.storage().ref().child(this.props.uid + '.' + data.image).getDownloadURL().then(url => {
+                firebase.storage().ref().child(secondId + '.' + data.image).getDownloadURL().then(url => {
                     this.setState({userTwoImage: url})
                 })
             }
