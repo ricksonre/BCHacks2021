@@ -136,13 +136,13 @@ export default class Boat extends Component {
 
         showChat(user)
         {
-            if (user && user.image)
+            /*if (user && user.image)
             {
                 this.props.firebase.storage().ref().child(this.props.uid + '.' + user.image).getDownloadURL().then(url =>
                 {
                     this.setState({ image: url })
                 })
-            }
+            }*/
 
             this.updateChat();
             let userInfo = $(".UserInformation");
