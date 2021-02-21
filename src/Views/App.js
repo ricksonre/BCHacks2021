@@ -2,11 +2,11 @@ import '../Styles/App.css';
 import Routes from '../Routes'
 import SideBar from './SideBar'
 import {Component} from 'react'
-import firebaseHelper from "../firebaseHelper";
 import $ from 'jquery';
 import googleImage from '../gsignn.png'
 import googleImage2 from '../gsignp.png'
 import {BrowserRouter} from "react-router-dom";
+import firebase, {initializeApp} from 'firebase';
 
 export default class app extends Component
 {
@@ -14,7 +14,27 @@ export default class app extends Component
     constructor(props){
         super(props);
 
-        const firebase = firebaseHelper();
+        if (!firebase.apps.length) {
+            var firebaseConfig = {
+                apiKey: "AIzaSyAVLfJmn-WkAGp7R3tEIBk-CYAVZ6-iR-o",
+                databaseURL: "https://envios-bb361.firebaseio.com",
+                authDomain: "envios-bb361.firebaseapp.com",
+                projectId: "envios-bb361",
+                storageBucket: "envios-bb361.appspot.com",
+                messagingSenderId: "584556975097",
+                appId: "1:584556975097:web:67950bd892e7e1070b6328",
+                measurementId: "G-V0F2VLG6W8"
+            };
+            // Initialize Firebase
+
+            firebase.initializeApp(firebaseConfig);
+        }
+        else{
+            firebase.app()
+        }
+
+        console.log()
+
         this.state={
             firebase: firebase,
             uid: localStorage.getItem('uid') ? localStorage.getItem('uid') : undefined,

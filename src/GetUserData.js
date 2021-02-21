@@ -2,11 +2,13 @@ import firebase from 'firebase'
 
 export default async function(uid, firebase){
 
-	const db = firebase.firestore();
-	 const docData = await db.collection('User').doc(uid).get().then(docData => {
-		return docData.data();
-	});
+	let dataOut;
 
-	 return docData
+	await firebase.firestore().collection('users').doc(uid).get().then(data => {
+		dataOut = data.data();
+	})
+
+	return dataOut
+
 
 }
