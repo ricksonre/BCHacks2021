@@ -13,7 +13,8 @@ export default class Profile extends Component
 
         GetUserData(this.props.uid, this.props.firebase).then(data => {
             this.setState({userData: data})
-            if(data.image){
+            console.log(this.props.uid)
+            if(data && data.image){
                 this.props.firebase.storage().ref().child(this.props.uid + '.' + data.image).getDownloadURL().then(url => {
                     this.setState({image: url})
                 })

@@ -6,7 +6,7 @@ export default async function(uid, preference, firebase){
 	let ref = {}
 
 	if(preference) {
-		ref =firebase.firestore().collection('users').where('gender', '==', preference)
+		ref =firebase.firestore().collection('users').where('gender', '==', preference).where('uid', '!=', uid)
 	}
 	else{
 		ref =firebase.firestore().collection('users')
